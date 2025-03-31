@@ -38,6 +38,10 @@ public class ConexionBD {
     
     
     
+    //Link de descarga del .jar
+    //https://dev.mysql.com/downloads/connector/j/
+    
+    
     
 }
 
