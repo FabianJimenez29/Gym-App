@@ -10,10 +10,10 @@ import java.sql.Date;
 public class Membresias {
     private int Id_Membresia;
     private String Nombre_Membresia;
-    private Date Duracion_Membresia;
+    private String Duracion_Membresia;
     private float Precio_Membresia;
 
-    public Membresias(int Id_Membresia, String Nombre_Membresia, Date Duracion_Membresia, float Precio_Membresia) {
+    public Membresias(int Id_Membresia, String Nombre_Membresia, String Duracion_Membresia, float Precio_Membresia) {
         this.Id_Membresia = Id_Membresia;
         this.Nombre_Membresia = Nombre_Membresia;
         this.Duracion_Membresia = Duracion_Membresia;
@@ -36,11 +36,11 @@ public class Membresias {
         this.Nombre_Membresia = Nombre_Membresia;
     }
 
-    public Date getDuracion_Membresia() {
+    public String getDuracion_Membresia() {
         return Duracion_Membresia;
     }
 
-    public void setDuracion_Membresia(Date Duracion_Membresia) {
+    public void setDuracion_Membresia(String Duracion_Membresia) {
         this.Duracion_Membresia = Duracion_Membresia;
     }
 

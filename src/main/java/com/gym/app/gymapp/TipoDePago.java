@@ -10,6 +10,6 @@ package com.gym.app.gymapp;
  */
 public enum TipoDePago {
     
-    EFECTIVO, TARJETA, TRANSFERENCIA
+    Efectivo, Tarjeta, Transferencia
     
 }

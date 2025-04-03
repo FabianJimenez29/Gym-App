@@ -7,7 +7,11 @@ package com.gym.app.gymapp.features;
 import com.gym.app.gymapp.classes.Usuario;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -75,5 +79,24 @@ public class UsuarioDAO {
             System.out.println("❌ Error al eliminar usuario: " + e.getMessage());
             return false;
         }
+    }
+
+    public List<Usuario> obtenerClientes() {
+        List<Usuario> lista = new ArrayList<>();
+        String sql = "SELECT Id_Client, Name, LastName FROM client";  // Asegúrate de que solo traiga estos 3 campos
+
+        try (Connection conn = ConexionBD.conectar(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                int id = rs.getInt("Id_Client");
+                String nombre = rs.getString("Name");
+                String apellido = rs.getString("LastName");
+
+                // Crear el objeto Usuario con solo los campos que necesitas
+                lista.add(new Usuario(id, nombre, apellido, 0, 0, "")); // Aquí solo pasamos lo necesario
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return lista;
     }
 }

@@ -49,21 +49,15 @@ public class Pruebas extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        txtLastname2 = new javax.swing.JTextField();
-        jLabel18 = new javax.swing.JLabel();
-        txtId2 = new javax.swing.JTextField();
+        txtIdClient1 = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        txtAge2 = new javax.swing.JTextField();
         btnGuardar2 = new javax.swing.JButton();
         btnEditar2 = new javax.swing.JButton();
-        txtPhone2 = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
-        txtMail2 = new javax.swing.JTextField();
-        jLabel17 = new javax.swing.JLabel();
-        txtName2 = new javax.swing.JTextField();
+        txtIdAdmin1 = new javax.swing.JTextField();
         btnEliminar2 = new javax.swing.JButton();
+        cmbTipoPago = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         txtIdClient = new javax.swing.JTextField();
         txtNameClient = new javax.swing.JTextField();
@@ -180,8 +174,6 @@ public class Pruebas extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 102, 102));
 
-        jLabel18.setText("Correo");
-
         jLabel14.setText("Nombre");
 
         jLabel15.setText("Apellido");
@@ -192,17 +184,15 @@ public class Pruebas extends javax.swing.JFrame {
 
         btnEditar2.setText("Editar");
 
-        jLabel13.setText("ID");
-
-        jLabel17.setText("Telefono");
-
-        txtName2.addActionListener(new java.awt.event.ActionListener() {
+        txtIdAdmin1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtName2ActionPerformed(evt);
+                txtIdAdmin1ActionPerformed(evt);
             }
         });
 
         btnEliminar2.setText("Eliminar");
+
+        cmbTipoPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -216,56 +206,38 @@ public class Pruebas extends javax.swing.JFrame {
                     .addComponent(btnGuardar2)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtName2)
-                            .addComponent(txtLastname2)
-                            .addComponent(txtAge2)
-                            .addComponent(txtPhone2)
-                            .addComponent(txtMail2)
-                            .addComponent(txtId2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtIdAdmin1)
+                            .addComponent(txtIdClient1)
+                            .addComponent(cmbTipoPago, 0, 210, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel13)
                             .addComponent(jLabel14)
                             .addComponent(jLabel15)
-                            .addComponent(jLabel16)
-                            .addComponent(jLabel17)
-                            .addComponent(jLabel18))))
-                .addContainerGap(41, Short.MAX_VALUE))
+                            .addComponent(jLabel16))))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(59, 59, 59)
+                .addGap(88, 88, 88)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtId2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtName2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIdAdmin1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtLastname2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIdClient1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtAge2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPhone2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel17))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtMail2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel18))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jLabel16)
+                    .addComponent(cmbTipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(58, 58, 58)
                 .addComponent(btnGuardar2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEditar2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEliminar2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(449, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 0));
@@ -399,9 +371,9 @@ public class Pruebas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNameAdminActionPerformed
 
-    private void txtName2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtName2ActionPerformed
+    private void txtIdAdmin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdAdmin1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtName2ActionPerformed
+    }//GEN-LAST:event_txtIdAdmin1ActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
@@ -508,16 +480,14 @@ public class Pruebas extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnGuardar2;
     private javax.swing.JButton btnGuardarAdmin;
+    private javax.swing.JComboBox<String> cmbTipoPago;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -529,22 +499,18 @@ public class Pruebas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField txtAge2;
     private javax.swing.JTextField txtAgeAdmin;
     private javax.swing.JTextField txtAgeClient;
-    private javax.swing.JTextField txtId2;
     private javax.swing.JTextField txtIdAdmin;
+    private javax.swing.JTextField txtIdAdmin1;
     private javax.swing.JTextField txtIdClient;
-    private javax.swing.JTextField txtLastname2;
+    private javax.swing.JTextField txtIdClient1;
     private javax.swing.JTextField txtLastnameAdmin;
     private javax.swing.JTextField txtLastnameClient;
-    private javax.swing.JTextField txtMail2;
     private javax.swing.JTextField txtMailAdmin;
     private javax.swing.JTextField txtMailClient;
-    private javax.swing.JTextField txtName2;
     private javax.swing.JTextField txtNameAdmin;
     private javax.swing.JTextField txtNameClient;
-    private javax.swing.JTextField txtPhone2;
     private javax.swing.JTextField txtPhoneAdmin;
     private javax.swing.JTextField txtPhoneClient;
     // End of variables declaration//GEN-END:variables

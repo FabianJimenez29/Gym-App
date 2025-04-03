@@ -18,13 +18,15 @@ public class Pagos {
     private int Id_Cliente;
     private TipoDePago Tipo_Pago;
     private Date Fecha_Pago;
+    private String Tipo_Membresia;
 
-    public Pagos(int Id_Pago, int Id_Administrador, int Id_Cliente, TipoDePago Tipo_Pago, Date Fecha_Pago) {
+    public Pagos(int Id_Pago, int Id_Administrador, int Id_Cliente, TipoDePago Tipo_Pago, Date Fecha_Pago, String Tipo_Membresia) {
         this.Id_Pago = Id_Pago;
         this.Id_Administrador = Id_Administrador;
         this.Id_Cliente = Id_Cliente;
         this.Tipo_Pago = Tipo_Pago;
         this.Fecha_Pago = Fecha_Pago;
+        this.Tipo_Membresia = Tipo_Membresia;
     }
 
     public int getId_Pago() {
@@ -66,6 +68,16 @@ public class Pagos {
     public void setFecha_Pago(Date Fecha_Pago) {
         this.Fecha_Pago = Fecha_Pago;
     }
+
+    public String getTipo_Membresia() {
+        return Tipo_Membresia;
+    }
+
+    public void setTipo_Membresia(String Tipo_Membresia) {
+        this.Tipo_Membresia = Tipo_Membresia;
+    }
+    
+    
     
     
     
