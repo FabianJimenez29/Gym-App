@@ -9,9 +9,7 @@ import com.gym.app.gymapp.features.MailService;
 public class GymApp {
 
     public static void main(String[] args) {
-        //Hola
-        System.out.println("Hola");
-        //aaaaa
+        
     }
 
 }
