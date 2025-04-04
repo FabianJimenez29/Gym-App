@@ -4,6 +4,7 @@
  */
 package com.gym.app.gymapp.frames;
 
+import com.gym.app.gymapp.TipoMembresia;
 import com.gym.app.gymapp.features.MembresiaDAO;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -11,7 +12,6 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import com.gym.app.gymapp.classes.Membresias;
-
 
 /**
  *
@@ -25,6 +25,7 @@ public class MembresiasFrame extends javax.swing.JFrame {
     public MembresiasFrame() {
         initComponents();
         cargarMembresia();
+        cargarTipo();
     }
 
     /**
@@ -47,6 +48,8 @@ public class MembresiasFrame extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMembresia = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
+        cmbTipoMembresia = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,6 +83,10 @@ public class MembresiasFrame extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblMembresia);
 
+        jLabel4.setText("Tipo De Membresia");
+
+        cmbTipoMembresia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -98,7 +105,10 @@ public class MembresiasFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnEditar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnEliminar)))
+                        .addComponent(btnEliminar))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(cmbTipoMembresia, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56))
@@ -118,7 +128,11 @@ public class MembresiasFrame extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cmbTipoMembresia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
                     .addComponent(btnEditar)
@@ -139,6 +153,7 @@ public class MembresiasFrame extends javax.swing.JFrame {
             String nombre = txtNombre.getText();
             String dias = txtDuracion.getText(); // Convertir a int
             float precio = Float.parseFloat(txtPrecio.getText()); // Convertir a float
+            TipoMembresia tipo = TipoMembresia.valueOf(cmbTipoMembresia.getSelectedItem().toString());
 
             // Validaciones básicas
             if (nombre.isEmpty() || dias.isEmpty() || precio <= 0) {
@@ -146,9 +161,12 @@ public class MembresiasFrame extends javax.swing.JFrame {
                 return;
             }
 
+            Membresias mem = new Membresias(0, nombre, dias, precio, tipo);
+
             // Guardar en la base de datos
             MembresiaDAO dao = new MembresiaDAO();
-            dao.insertarMembresia(nombre, dias, precio);
+            dao.insertarMembresia(mem);
+            cargarMembresia();
 
             // Mostrar mensaje de éxito
             JOptionPane.showMessageDialog(this, "✅ Membresía guardada correctamente.");
@@ -212,6 +230,7 @@ public class MembresiasFrame extends javax.swing.JFrame {
             modelo.addColumn("Nombre");
             modelo.addColumn("Duración");
             modelo.addColumn("Precio");
+            modelo.addColumn("Tipo");
 
             // Agregar datos al modelo
             for (Membresias membresia : listaMembresias) {
@@ -219,7 +238,8 @@ public class MembresiasFrame extends javax.swing.JFrame {
                     membresia.getId_Membresia(),
                     membresia.getNombre_Membresia(),
                     membresia.getDuracion_Membresia(),
-                    membresia.getPrecio_Membresia()
+                    membresia.getPrecio_Membresia(),
+                    membresia.getTipo_Membresia()
                 });
             }
 
@@ -230,14 +250,31 @@ public class MembresiasFrame extends javax.swing.JFrame {
         }
     }
 
+    private void cargarTipo() {
+        try {
+            cmbTipoMembresia.removeAllItems();
+            cmbTipoMembresia.addItem("Seleccione un tipo...");
+
+            for (TipoMembresia tipo : TipoMembresia.values()) {
+                cmbTipoMembresia.addItem(tipo.name());
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al cargar membresías: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JComboBox<String> cmbTipoMembresia;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblMembresia;
     private javax.swing.JTextField txtDuracion;

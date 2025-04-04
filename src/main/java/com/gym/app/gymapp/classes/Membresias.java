@@ -1,6 +1,7 @@
 
 package com.gym.app.gymapp.classes;
 
+import com.gym.app.gymapp.TipoMembresia;
 import java.sql.Date;
 
 /**
@@ -12,12 +13,14 @@ public class Membresias {
     private String Nombre_Membresia;
     private String Duracion_Membresia;
     private float Precio_Membresia;
+    private TipoMembresia Tipo_Membresia;
 
-    public Membresias(int Id_Membresia, String Nombre_Membresia, String Duracion_Membresia, float Precio_Membresia) {
+    public Membresias(int Id_Membresia, String Nombre_Membresia, String Duracion_Membresia, float Precio_Membresia, TipoMembresia Tipo_Membresia) {
         this.Id_Membresia = Id_Membresia;
         this.Nombre_Membresia = Nombre_Membresia;
         this.Duracion_Membresia = Duracion_Membresia;
         this.Precio_Membresia = Precio_Membresia;
+        this.Tipo_Membresia = Tipo_Membresia;
     }
 
     public int getId_Membresia() {
@@ -51,6 +54,16 @@ public class Membresias {
     public void setPrecio_Membresia(float Precio_Membresia) {
         this.Precio_Membresia = Precio_Membresia;
     }
+
+    public TipoMembresia getTipo_Membresia() {
+        return Tipo_Membresia;
+    }
+
+    public void setTipo_Membresia(TipoMembresia Tipo_Membresia) {
+        this.Tipo_Membresia = Tipo_Membresia;
+    }
+    
+    
     
     
     

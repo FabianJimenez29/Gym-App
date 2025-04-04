@@ -1,5 +1,6 @@
 package com.gym.app.gymapp.features;
 
+import com.gym.app.gymapp.TipoMembresia;
 import com.gym.app.gymapp.classes.Membresias;
 import java.sql.Connection;
 import java.sql.CallableStatement;
@@ -12,31 +13,33 @@ import javax.swing.JOptionPane;
 
 public class MembresiaDAO {
 
-    public void insertarMembresia(String nombre, String duracion, float precio) {
-        String sql = "{CALL InsertMembership(?, ?, ?)}";
+    public void insertarMembresia(Membresias mem) {
+        String sql = "{CALL InsertMembership(?, ?, ?, ?)}";
 
         try (Connection conn = ConexionBD.conectar(); CallableStatement stmt = conn.prepareCall(sql)) {
 
-            stmt.setString(1, nombre);
-            stmt.setString(2, duracion);
-            stmt.setFloat(3, precio);
+            stmt.setString(1, mem.getNombre_Membresia());
+            stmt.setString(2, mem.getDuracion_Membresia());
+            stmt.setFloat(3, mem.getPrecio_Membresia());
+            stmt.setString(4, mem.getTipo_Membresia().name());
 
             stmt.execute();
-            JOptionPane.showMessageDialog(null, "✅ Membresía agregada con éxito.");
+            
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "❌ Error al insertar membresía: " + e.getMessage());
         }
     }
 
-    public void actualizarMembresia(int id, String nombre, String duracion, float precio) {
+    public void actualizarMembresia(Membresias mem) {
         String sql = "{CALL UpdateMembership(?, ?, ?, ?)}";
 
         try (Connection conn = ConexionBD.conectar(); CallableStatement stmt = conn.prepareCall(sql)) {
 
-            stmt.setInt(1, id);
-            stmt.setString(2, nombre);
-            stmt.setString(3, duracion);
-            stmt.setFloat(4, precio);
+            
+            stmt.setString(1, mem.getNombre_Membresia());
+            stmt.setString(2, mem.getDuracion_Membresia());
+            stmt.setFloat(3, mem.getPrecio_Membresia());
+            stmt.setString(4, mem.getTipo_Membresia().name());
 
             stmt.execute();
             JOptionPane.showMessageDialog(null, "✅ Membresía actualizada con éxito.");
@@ -61,7 +64,7 @@ public class MembresiaDAO {
 
     public List<Membresias> obtenerMembresia() {
         List<Membresias> lista = new ArrayList<>();
-        String sql = "SELECT Id_Membership, Name_Membership, Duration_Membership, Price_Membership FROM memberships";
+        String sql = "SELECT Id_Membership, Name_Membership, Duration_Membership, Price_Membership, Type_Membership FROM memberships";
 
         try (Connection conn = ConexionBD.conectar(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
 
@@ -70,9 +73,30 @@ public class MembresiaDAO {
                 String nombre = rs.getString("Name_Membership");
                 String duracion = rs.getString("Duration_Membership");
                 float precio = rs.getFloat("Price_Membership");
+                TipoMembresia tipo = TipoMembresia.valueOf(rs.getString("Type_Membership"));
 
                 // Crear el objeto Membresias con los datos correctos
-                lista.add(new Membresias(id, nombre, duracion, precio));
+                lista.add(new Membresias(id, nombre, duracion, precio, tipo));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return lista;
+    }
+    
+    public List<Membresias> obtenerTipoMembresia() {
+        List<Membresias> lista = new ArrayList<>();
+        String sql = "SELECT Type_Membership FROM memberships";
+
+        try (Connection conn = ConexionBD.conectar(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                
+                TipoMembresia tipo = TipoMembresia.valueOf(rs.getString("Type_Membership"));
+
+                // Crear el objeto Membresias con los datos correctos
+                lista.add(new Membresias(0, "", "", 0, tipo));
             }
 
         } catch (SQLException e) {
