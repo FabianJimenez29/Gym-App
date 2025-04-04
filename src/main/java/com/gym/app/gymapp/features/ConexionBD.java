@@ -19,7 +19,7 @@ public class ConexionBD {
         try {
             
             conexion = DriverManager.getConnection(URL, USUARIO, CONTRASEÑA);
-            System.out.println("✅ Conexión exitosa a MySQL");
+            
         } catch (SQLException e) {
             System.err.println("❌ Error al conectar a MySQL: " + e.getMessage());
             e.printStackTrace();

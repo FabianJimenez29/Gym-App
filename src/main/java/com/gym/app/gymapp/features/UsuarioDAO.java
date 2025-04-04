@@ -7,6 +7,7 @@ package com.gym.app.gymapp.features;
 import com.gym.app.gymapp.classes.Usuario;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -99,4 +100,59 @@ public class UsuarioDAO {
         }
         return lista;
     }
+
+    public List<Usuario> obtenerClientesTotales() {
+        List<Usuario> lista = new ArrayList<>();
+        String sql = "SELECT Id_Client, Name, LastName, Age, Phone, Mail FROM client";  // Asegúrate de que solo traiga estos 3 campos
+
+        try (Connection conn = ConexionBD.conectar(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                int id = rs.getInt("Id_Client");
+                String nombre = rs.getString("Name");
+                String apellido = rs.getString("LastName");
+                int edad = rs.getInt("Age");
+                int telefono = rs.getInt("Phone");
+                String correo = rs.getString("Mail");
+
+                // Crear el objeto Usuario con solo los campos que necesitas
+                lista.add(new Usuario(id, nombre, apellido, edad, telefono, correo)); // Aquí solo pasamos lo necesario
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return lista;
+    }
+
+    public List<Usuario> buscarClientePorNombreApellido(String nombre, String apellido) {
+        List<Usuario> listaClientes = new ArrayList<>();
+
+        String query = "SELECT * FROM client WHERE Name LIKE ? AND LastName LIKE ?";
+
+        try (Connection conn = ConexionBD.conectar(); PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            // Usamos "%" para buscar cualquier coincidencia parcial
+            stmt.setString(1, "%" + nombre + "%");
+            stmt.setString(2, "%" + apellido + "%");
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    // Crear un objeto Usuario para cada registro
+                    Usuario cliente = new Usuario(
+                            rs.getInt("Id_Client"),
+                            rs.getString("Name"),
+                            rs.getString("LastName"),
+                            rs.getInt("Age"),
+                            rs.getInt("Phone"),
+                            rs.getString("Mail")
+                    );
+                    listaClientes.add(cliente);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al buscar el cliente: " + e.getMessage());
+        }
+
+        return listaClientes;
+    }
+
 }
