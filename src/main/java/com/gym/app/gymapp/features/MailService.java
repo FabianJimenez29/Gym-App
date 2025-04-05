@@ -1,45 +1,40 @@
 package com.gym.app.gymapp.features;
 
-import com.sendgrid.Method;
-import com.sendgrid.Request;
-import com.sendgrid.Response;
-import com.sendgrid.SendGrid;
-import com.sendgrid.helpers.mail.Mail;
-import com.sendgrid.helpers.mail.objects.Content;
-import com.sendgrid.helpers.mail.objects.Email;
-import io.github.cdimascio.dotenv.Dotenv; // Asegúrate de importar dotenv
 
-import java.io.IOException;
+import com.resend.Resend;
+import com.resend.core.exception.ResendException;
+import com.resend.services.emails.model.CreateEmailOptions;
+import com.resend.services.emails.model.CreateEmailResponse;
+import io.github.cdimascio.dotenv.Dotenv;
 
 public class MailService {
 
-    private static final Dotenv dotenv = Dotenv.load(); // Cargar variables de .env
-    private static final String SENDGRID_API_KEY = dotenv.get("SENDGRID_API_KEY"); // Obtener clave
-    private static final String FROM_EMAIL = "gymcabita2025@outlook.com";
+    private static final Dotenv dotenv = Dotenv.load();
+    private static final String RESEND_API_KEY = dotenv.get("RESEND_API_KEY");
+    private static final String FROM_EMAIL = "Notificaciones <notificaciones@gymcabita.lat>";
 
-    public static void sendEmail(String toEmail, String subject, String body) {
-        if (SENDGRID_API_KEY == null || SENDGRID_API_KEY.isEmpty()) {
-            System.out.println("❌ Error: No se encontró la API Key de SendGrid.");
+    public static void sendEmail(String toEmail, String subject, String htmlBody) {
+        if (RESEND_API_KEY == null || RESEND_API_KEY.isEmpty()) {
+            System.out.println("❌ Error: No se encontró la API Key de Resend.");
             return;
         }
 
-        Email from = new Email(FROM_EMAIL);
-        Email to = new Email(toEmail);
-        Content content = new Content("text/plain", body);
-        Mail mail = new Mail(from, subject, to, content);
-
-        SendGrid sg = new SendGrid(SENDGRID_API_KEY);
-        Request request = new Request();
-
         try {
-            request.setMethod(Method.POST);
-            request.setEndpoint("mail/send");
-            request.setBody(mail.build());
-            Response response = sg.api(request);
-            System.out.println("Código de respuesta: " + response.getStatusCode());
-            System.out.println("Cuerpo de respuesta: " + response.getBody());
-        } catch (IOException ex) {
-            System.out.println("Error al enviar el correo: " + ex.getMessage());
+            Resend resend = new Resend(RESEND_API_KEY);
+
+            CreateEmailOptions params = CreateEmailOptions.builder()
+                    .from(FROM_EMAIL)
+                    .to(toEmail)
+                    .subject(subject)
+                    .html(htmlBody)
+                    .build();
+
+            CreateEmailResponse data = resend.emails().send(params);
+            System.out.println("✅ Correo enviado. ID del mensaje: " + data.getId());
+
+        } catch (ResendException e) {
+            System.out.println("❌ Error al enviar correo: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }

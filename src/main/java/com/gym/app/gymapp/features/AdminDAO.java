@@ -3,7 +3,11 @@ package com.gym.app.gymapp.features;
 import com.gym.app.gymapp.classes.Administrador;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -80,6 +84,30 @@ public class AdminDAO {
             System.out.println("❌ Error al eliminar administrador: " + e.getMessage());
             return false;
         }
+    }
+    
+    
+    public List<Administrador> obtenerAdministradoresTotales() {
+        List<Administrador> lista = new ArrayList<>();
+        String sql = "SELECT Id_Admin, Name, LastName, Age, Phone, Mail, Password FROM admin";  // Asegúrate de que solo traiga estos 3 campos
+
+        try (Connection conn = ConexionBD.conectar(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                int id = rs.getInt("Id_Admin");
+                String nombre = rs.getString("Name");
+                String apellido = rs.getString("LastName");
+                int edad = rs.getInt("Age");
+                int telefono = rs.getInt("Phone");
+                String correo = rs.getString("Mail");
+                String contrasena = rs.getString("Password");
+
+                // Crear el objeto Usuario con solo los campos que necesitas
+                lista.add(new Administrador(id, nombre, apellido, edad, telefono, correo, contrasena)); // Aquí solo pasamos lo necesario
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return lista;
     }
 
     private String generarContrasena(Administrador admin) {
