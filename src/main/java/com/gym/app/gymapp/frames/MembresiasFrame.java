@@ -26,6 +26,8 @@ public class MembresiasFrame extends javax.swing.JFrame {
         initComponents();
         cargarMembresia();
         cargarTipo();
+        limpiar();
+        txtId.setEnabled(false);
     }
 
     /**
@@ -50,6 +52,9 @@ public class MembresiasFrame extends javax.swing.JFrame {
         tblMembresia = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         cmbTipoMembresia = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        txtId = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,8 +72,18 @@ public class MembresiasFrame extends javax.swing.JFrame {
         });
 
         btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         tblMembresia.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -81,11 +96,25 @@ public class MembresiasFrame extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblMembresia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblMembresiaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblMembresia);
 
         jLabel4.setText("Tipo De Membresia");
 
         cmbTipoMembresia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jButton1.setText("Volver");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Id Membresia");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -94,8 +123,11 @@ public class MembresiasFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(74, 74, 74)
+                        .addComponent(jButton1))
                     .addComponent(jLabel1)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(txtDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
@@ -108,8 +140,10 @@ public class MembresiasFrame extends javax.swing.JFrame {
                         .addComponent(btnEliminar))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(cmbTipoMembresia, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel5)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56))
         );
@@ -117,6 +151,12 @@ public class MembresiasFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -182,6 +222,60 @@ public class MembresiasFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "❌ Error al guardar la membresía: " + e.getMessage());
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Principal p = new Principal();
+        p.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        
+        try {
+            int id = Integer.parseInt(txtId.getText());
+            String nombre = txtNombre.getText();
+            String dias = txtDuracion.getText(); // Convertir a int
+            float precio = Float.parseFloat(txtPrecio.getText()); // Convertir a float
+            TipoMembresia tipo = TipoMembresia.valueOf(cmbTipoMembresia.getSelectedItem().toString());
+            
+
+            Membresias membresia = new Membresias(id, nombre, dias, precio, tipo);
+
+            MembresiaDAO dao = new MembresiaDAO();
+            boolean membresiaAct = dao.actualizarMembresia(membresia);
+            cargarMembresia();
+            limpiar();
+            btnGuardar.setEnabled(true);
+            
+
+            if (membresiaAct) {
+                JOptionPane.showMessageDialog(this, "Membresia actualizada exitosamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al actualizar la Membresia", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void tblMembresiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMembresiaMouseClicked
+        int fila = tblMembresia.getSelectedRow();
+        if (fila >= 0) {
+            btnGuardar.setEnabled(false);
+            txtId.setEnabled(false);
+            txtId.setText(tblMembresia.getValueAt(fila, 0).toString());
+            txtNombre.setText(tblMembresia.getValueAt(fila, 1).toString());
+            txtDuracion.setText(tblMembresia.getValueAt(fila, 2).toString());
+            txtPrecio.setText(tblMembresia.getValueAt(fila, 3).toString());
+            cmbTipoMembresia.setSelectedItem(tblMembresia.getValueAt(fila, 4).toString());
+            
+        }
+    }//GEN-LAST:event_tblMembresiaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -253,7 +347,7 @@ public class MembresiasFrame extends javax.swing.JFrame {
     private void cargarTipo() {
         try {
             cmbTipoMembresia.removeAllItems();
-            cmbTipoMembresia.addItem("Seleccione un tipo...");
+            cmbTipoMembresia.addItem("Seleccione Un Tipo");
 
             for (TipoMembresia tipo : TipoMembresia.values()) {
                 cmbTipoMembresia.addItem(tipo.name());
@@ -264,6 +358,14 @@ public class MembresiasFrame extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
+    
+    public void limpiar(){
+        txtId.setText("");
+        txtDuracion.setText("");
+        txtNombre.setText("");
+        txtPrecio.setText("");
+        cmbTipoMembresia.setSelectedItem("Seleccione Un Tipo");
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -271,13 +373,16 @@ public class MembresiasFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JComboBox<String> cmbTipoMembresia;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblMembresia;
     private javax.swing.JTextField txtDuracion;
+    private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables

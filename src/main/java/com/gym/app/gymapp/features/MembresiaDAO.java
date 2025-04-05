@@ -24,28 +24,35 @@ public class MembresiaDAO {
             stmt.setString(4, mem.getTipo_Membresia().name());
 
             stmt.execute();
-            
+
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "❌ Error al insertar membresía: " + e.getMessage());
         }
     }
 
-    public void actualizarMembresia(Membresias mem) {
-        String sql = "{CALL UpdateMembership(?, ?, ?, ?)}";
+    public boolean actualizarMembresia(Membresias mem) {
+        String sql = "{CALL UpdateMembership(?, ?, ?, ?, ?)}";
+        boolean resultado = false;  // Inicializamos con false por defecto
 
         try (Connection conn = ConexionBD.conectar(); CallableStatement stmt = conn.prepareCall(sql)) {
 
-            
-            stmt.setString(1, mem.getNombre_Membresia());
-            stmt.setString(2, mem.getDuracion_Membresia());
-            stmt.setFloat(3, mem.getPrecio_Membresia());
-            stmt.setString(4, mem.getTipo_Membresia().name());
+            stmt.setInt(1, mem.getId_Membresia());
+            stmt.setString(2, mem.getNombre_Membresia());
+            stmt.setString(3, mem.getDuracion_Membresia());
+            stmt.setFloat(4, mem.getPrecio_Membresia());
+            stmt.setString(5, mem.getTipo_Membresia().name());
 
-            stmt.execute();
-            JOptionPane.showMessageDialog(null, "✅ Membresía actualizada con éxito.");
+            int filasAfectadas = stmt.executeUpdate(); // Usamos executeUpdate, que retorna el número de filas afectadas
+
+            if (filasAfectadas > 0) {
+                resultado = true;  // Si la operación afecta al menos una fila, retornamos true
+                JOptionPane.showMessageDialog(null, "✅ Membresía actualizada con éxito.");
+            }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "❌ Error al actualizar membresía: " + e.getMessage());
         }
+
+        return resultado;  // Devolvemos el resultado de la operación
     }
 
     public void eliminarMembresia(int id) {
@@ -84,7 +91,7 @@ public class MembresiaDAO {
         }
         return lista;
     }
-    
+
     public List<Membresias> obtenerTipoMembresia() {
         List<Membresias> lista = new ArrayList<>();
         String sql = "SELECT Type_Membership FROM memberships";
@@ -92,7 +99,7 @@ public class MembresiaDAO {
         try (Connection conn = ConexionBD.conectar(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
-                
+
                 TipoMembresia tipo = TipoMembresia.valueOf(rs.getString("Type_Membership"));
 
                 // Crear el objeto Membresias con los datos correctos
