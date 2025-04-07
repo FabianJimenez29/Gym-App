@@ -3,6 +3,7 @@ package com.gym.app.gymapp.features;
 import com.gym.app.gymapp.classes.Administrador;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -152,12 +153,40 @@ public class AdminDAO {
         cuerpoHTML = cuerpoHTML.replace("{{contrasena}}", contrasena);
 
         try {
-            MailService.sendEmail(correo, asunto, cuerpoHTML); 
+            MailService.sendEmail(correo, asunto, cuerpoHTML);
             return true;
         } catch (Exception e) {
             System.out.println("❌ Error al enviar el correo: " + e.getMessage());
             return false;
         }
     }
+
+    public Administrador validarCredenciales(String correo, String contrasena) {
+    String sql = "SELECT * FROM admin WHERE Mail = ? AND Password = ?";
+
+    try (Connection conn = ConexionBD.conectar(); 
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+        stmt.setString(1, correo);
+        stmt.setString(2, contrasena);
+
+        try (ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                return new Administrador(
+                    rs.getInt("Id_Admin"),
+                    rs.getString("Name"),
+                    rs.getString("LastName"),
+                    rs.getInt("Age"),
+                    rs.getInt("Phone"),
+                    rs.getString("Mail"),
+                    rs.getString("Password")
+                );
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return null;
+}
 
 }

@@ -4,6 +4,7 @@
  */
 package com.gym.app.gymapp.frames;
 
+import com.gym.app.gymapp.SessionManager;
 import com.gym.app.gymapp.TipoDePago;
 import com.gym.app.gymapp.classes.Membresias;
 import com.gym.app.gymapp.classes.Pagos;
@@ -26,6 +27,14 @@ public class PruebaPago extends javax.swing.JFrame {
      */
     public PruebaPago() {
         initComponents();
+        
+        SessionManager session = SessionManager.getInstance();
+        if (!session.isAdmin()) {
+            JOptionPane.showMessageDialog(this, "Acceso no autorizado", "Error", JOptionPane.ERROR_MESSAGE);
+            dispose();
+            return;
+        }
+
         cargarTiposDePago();
         cargarClientes();
         cargarPagos();
@@ -49,9 +58,9 @@ public class PruebaPago extends javax.swing.JFrame {
     private void cargarTiposDePago() {
 
         cmbTipoPago.removeAllItems();
-        cmbTipoPago.addItem("Seleccione Una Opcion");// Limpiar ComboBox
+        cmbTipoPago.addItem("Seleccione Una Opcion");
         for (TipoDePago tipo : TipoDePago.values()) {
-            cmbTipoPago.addItem(tipo.name()); // Agregar opciones del enum
+            cmbTipoPago.addItem(tipo.name()); 
         }
     }
 
@@ -276,6 +285,9 @@ public class PruebaPago extends javax.swing.JFrame {
             // Insertar el pago
             PagosDAO pagosDAO = new PagosDAO();
             boolean exito = pagosDAO.insertarPago(pago);
+            SessionManager session = SessionManager.getInstance();
+            txtIdAdmin.setText(String.valueOf(session.getUserId()));
+            txtIdAdmin.setEnabled(false);
 
             if (exito) {
                 JOptionPane.showMessageDialog(this, "Pago registrado correctamente");
@@ -307,7 +319,10 @@ public class PruebaPago extends javax.swing.JFrame {
 
             // Actualizar el pago en la base de datos
             PagosDAO pagosDAO = new PagosDAO();
-            boolean exito = pagosDAO.editarPago(pago); // Este método debería actualizar el pago según su ID
+            boolean exito = pagosDAO.editarPago(pago);
+            SessionManager session = SessionManager.getInstance();
+            txtIdAdmin.setText(String.valueOf(session.getUserId()));
+            txtIdAdmin.setEnabled(false);// Este método debería actualizar el pago según su ID
 
             if (exito) {
                 JOptionPane.showMessageDialog(this, "Pago actualizado correctamente");
@@ -334,7 +349,10 @@ public class PruebaPago extends javax.swing.JFrame {
             if (response == JOptionPane.YES_OPTION) {
                 // Eliminar el pago
                 PagosDAO pagosDAO = new PagosDAO();
-                boolean exito = pagosDAO.eliminarPago(idPago);  // Este método debería eliminar el pago por ID
+                boolean exito = pagosDAO.eliminarPago(idPago);
+                SessionManager session = SessionManager.getInstance();
+                txtIdAdmin.setText(String.valueOf(session.getUserId()));
+                txtIdAdmin.setEnabled(false);// Este método debería eliminar el pago por ID
 
                 if (exito) {
                     JOptionPane.showMessageDialog(this, "Pago eliminado correctamente");
@@ -422,7 +440,7 @@ public class PruebaPago extends javax.swing.JFrame {
             List<Usuario> listaClientes = usuariosDao.obtenerClientes();
 
             if (listaClientes == null || listaClientes.isEmpty()) {
-                
+
                 return;
             }
 
@@ -437,7 +455,7 @@ public class PruebaPago extends javax.swing.JFrame {
             tblClientes.setModel(modelo);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al cargar clientes: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace(); 
+            e.printStackTrace();
         }
     }
 
