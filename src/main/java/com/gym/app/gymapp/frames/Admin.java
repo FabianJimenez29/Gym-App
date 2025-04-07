@@ -226,6 +226,8 @@ public class Admin extends javax.swing.JFrame {
         // Llamar al método del DAO para guardar el administrador en la base de datos
         AdminDAO adminDAO = new AdminDAO();
         boolean adminGuardado = adminDAO.insertarAdministrador(administrador);
+        cargarUsuario();
+        limpiar();
 
         if (adminGuardado) {
             // Mostrar mensaje de éxito

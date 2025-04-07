@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.text.html.HTML;
 
 /**
  *
@@ -16,11 +17,11 @@ import java.util.List;
 public class AdminDAO {
 
     public boolean insertarAdministrador(Administrador admin) {
-        String sql = "{CALL InsertAdmin(?, ?, ?, ?, ?, ?, ?)}"; 
+        String sql = "{CALL InsertAdmin(?, ?, ?, ?, ?, ?, ?)}";
 
         // Primero, enviamos el correo antes de hacer cualquier cambio en la base de datos
         String contrasenaGenerada = generarContrasena(admin);
-        
+
         // Si el correo no se envió correctamente, no realizamos la inserción
         if (!enviarCorreo(admin.getCorreo_Administrador(), contrasenaGenerada)) {
             System.out.println("❌ Error: El correo no se pudo enviar. Los datos no se guardarán.");
@@ -35,11 +36,11 @@ public class AdminDAO {
             stmt.setInt(4, admin.getEdad_Administrador());
             stmt.setInt(5, admin.getNumero_Administrador());
             stmt.setString(6, admin.getCorreo_Administrador());
-            stmt.setString(7, contrasenaGenerada);  
-            
+            stmt.setString(7, contrasenaGenerada);
+
             // Ahora que sabemos que el correo se envió correctamente, realizamos la inserción en la base de datos
             int filasAfectadas = stmt.executeUpdate();
-            
+
             return filasAfectadas > 0;
 
         } catch (SQLException e) {
@@ -49,7 +50,7 @@ public class AdminDAO {
     }
 
     public boolean editarAdministrador(Administrador admin) {
-        String sql = "{CALL UpdateAdmin(?, ?, ?, ?, ?, ?, ?)}"; 
+        String sql = "{CALL UpdateAdmin(?, ?, ?, ?, ?, ?, ?)}";
 
         try (Connection conn = ConexionBD.conectar(); CallableStatement stmt = conn.prepareCall(sql)) {
 
@@ -71,7 +72,7 @@ public class AdminDAO {
     }
 
     public boolean eliminarAdministrador(int idAdministrador) {
-        String sql = "{CALL DeleteAdmin(?)}"; 
+        String sql = "{CALL DeleteAdmin(?)}";
 
         try (Connection conn = ConexionBD.conectar(); CallableStatement stmt = conn.prepareCall(sql)) {
 
@@ -85,8 +86,7 @@ public class AdminDAO {
             return false;
         }
     }
-    
-    
+
     public List<Administrador> obtenerAdministradoresTotales() {
         List<Administrador> lista = new ArrayList<>();
         String sql = "SELECT Id_Admin, Name, LastName, Age, Phone, Mail, Password FROM admin";  // Asegúrate de que solo traiga estos 3 campos
@@ -123,17 +123,41 @@ public class AdminDAO {
     }
 
     private boolean enviarCorreo(String correo, String contrasena) {
-        String asunto = "Tu nueva contraseña";
-        String cuerpo = "Hola,\n\nTu nueva contraseña es: " + contrasena + "\n\nGracias por ser parte de nuestro gimnasio.";
+        String asunto = "🔒 Envío Automático De Contraseña - GymCabita";
+
+        String cuerpoHTML = """
+    <html>
+    <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;">
+        <div style="max-width: 600px; margin: auto; background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+            <h2 style="color: #2E86C1; text-align: center;">💪 ¡Hola de nuevo! 💪</h2>
+            <p style="font-size: 16px; color: #333;">
+                Hemos generado una nueva contraseña para tu cuenta en <strong>GymCabita</strong>. Asegúrate de cambiarla al iniciar sesión por una que recuerdes mejor.
+            </p>
+            <div style="background-color: #F2F3F4; padding: 15px; border-radius: 5px; text-align: center; margin: 20px 0;">
+                <p style="font-size: 18px; color: #000;">🔐 Tu nueva contraseña es:</p>
+                <p style="font-size: 22px; font-weight: bold; color: #2C3E50;">{{contrasena}}</p>
+            </div>
+            <p style="font-size: 16px; color: #333;">
+                Si no solicitaste este cambio, por favor contáctanos inmediatamente.
+            </p>
+            <p style="font-size: 14px; color: #888; margin-top: 30px;">
+                Gracias por seguir entrenando con nosotros 💙<br>
+                <strong>GymCabita</strong>
+            </p>
+        </div>
+    </body>
+    </html>
+    """;
+
+        cuerpoHTML = cuerpoHTML.replace("{{contrasena}}", contrasena);
 
         try {
-            // Si el correo se envía sin problemas, retornamos true
-            MailService.sendEmail(correo, asunto, cuerpo);
+            MailService.sendEmail(correo, asunto, cuerpoHTML); 
             return true;
         } catch (Exception e) {
-            // Si ocurre algún error al enviar el correo, capturamos la excepción
             System.out.println("❌ Error al enviar el correo: " + e.getMessage());
             return false;
         }
     }
+
 }

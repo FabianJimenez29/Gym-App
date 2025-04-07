@@ -46,7 +46,7 @@ public class MembresiaDAO {
 
             if (filasAfectadas > 0) {
                 resultado = true;  // Si la operación afecta al menos una fila, retornamos true
-                JOptionPane.showMessageDialog(null, "✅ Membresía actualizada con éxito.");
+                
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "❌ Error al actualizar membresía: " + e.getMessage());
@@ -63,7 +63,7 @@ public class MembresiaDAO {
             stmt.setInt(1, id);
 
             stmt.execute();
-            JOptionPane.showMessageDialog(null, "✅ Membresía eliminada con éxito.");
+            
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "❌ Error al eliminar membresía: " + e.getMessage());
         }

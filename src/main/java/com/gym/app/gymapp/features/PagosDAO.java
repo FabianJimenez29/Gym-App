@@ -43,21 +43,23 @@ public class PagosDAO {
 
     // Método para editar un pago
     public boolean editarPago(Pagos pago) {
-        String sql = "{CALL UpdatePayment(?, ?, ?, ?)}"; // Llamada al procedimiento almacenado
+        String sql = "{CALL UpdatePayment(?, ?, ?, ?, ?, ?)}"; // Llamada al procedimiento almacenado
 
         try (Connection conn = ConexionBD.conectar(); CallableStatement stmt = conn.prepareCall(sql)) {
 
-            
-            stmt.setInt(1, pago.getId_Administrador());
-            stmt.setInt(2, pago.getId_Cliente());
-            stmt.setString(3, pago.getTipo_Pago().name()); // Convertir ENUM a String
-            stmt.setString(4, pago.getTipo_Membresia());
+            stmt.setInt(1, pago.getId_Pago());
+            stmt.setInt(2, pago.getId_Administrador());
+            stmt.setInt(3, pago.getId_Cliente());
+            stmt.setString(4, pago.getTipo_Pago().name());
+            stmt.setDate(5, pago.getFecha_Pago());
+            stmt.setString(6, pago.getTipo_Membresia());
 
             int filasAfectadas = stmt.executeUpdate();
             return filasAfectadas > 0;
 
         } catch (SQLException e) {
             System.out.println("❌ Error al editar pago: " + e.getMessage());
+            
             return false;
         }
     }
