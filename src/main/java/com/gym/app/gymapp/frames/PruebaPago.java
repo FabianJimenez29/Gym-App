@@ -4,6 +4,7 @@
  */
 package com.gym.app.gymapp.frames;
 
+import com.gym.app.gymapp.SessionManager;
 import com.gym.app.gymapp.TipoDePago;
 import com.gym.app.gymapp.classes.Membresias;
 import com.gym.app.gymapp.classes.Pagos;
@@ -26,21 +27,43 @@ public class PruebaPago extends javax.swing.JFrame {
      */
     public PruebaPago() {
         initComponents();
+        
+        SessionManager session = SessionManager.getInstance();
+        if (!session.isAdmin()) {
+            JOptionPane.showMessageDialog(this, "Acceso no autorizado", "Error", JOptionPane.ERROR_MESSAGE);
+            dispose();
+            return;
+        }
+
         cargarTiposDePago();
         cargarClientes();
         cargarPagos();
         cargarMembresias();
+        txtIdPago.setEnabled(false);
+        txtFecha.setEnabled(false);
+        txtIdPago.setVisible(false);
+        txtFecha.setVisible(false);
+        lbl1.setVisible(false);
+        lbl2.setVisible(false);
 
+    }
+
+    public void limpiar() {
+        txtId.setText("");
+        txtIdAdmin.setText("");
+        cmbMembresia.setSelectedItem("Seleccione Un Tipo");
+        cmbTipoPago.setSelectedItem("Seleccione Una Opcion");
     }
 
     private void cargarTiposDePago() {
-        cmbTipoPago.removeAllItems(); // Limpiar ComboBox
+
+        cmbTipoPago.removeAllItems();
+        cmbTipoPago.addItem("Seleccione Una Opcion");
         for (TipoDePago tipo : TipoDePago.values()) {
-            cmbTipoPago.addItem(tipo.name()); // Agregar opciones del enum
+            cmbTipoPago.addItem(tipo.name()); 
         }
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -63,6 +86,10 @@ public class PruebaPago extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        txtIdPago = new javax.swing.JTextField();
+        txtFecha = new javax.swing.JTextField();
+        lbl1 = new javax.swing.JLabel();
+        lbl2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,7 +106,7 @@ public class PruebaPago extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblClientes);
 
-        jLabel1.setText("ID");
+        jLabel1.setText("Id Cliente");
 
         cmbTipoPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -103,6 +130,11 @@ public class PruebaPago extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblPagos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPagosMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblPagos);
 
         jLabel3.setText("Clientes");
@@ -136,6 +168,10 @@ public class PruebaPago extends javax.swing.JFrame {
             }
         });
 
+        lbl1.setText("Fecha");
+
+        lbl2.setText("Id Pago");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -156,22 +192,32 @@ public class PruebaPago extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(cmbMembresia, javax.swing.GroupLayout.Alignment.LEADING, 0, 200, Short.MAX_VALUE)
                                     .addComponent(cmbTipoPago, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtId, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(32, 32, 32)
-                                .addComponent(btnGuardar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnEditar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnEliminar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(32, 32, 32)
+                                        .addComponent(btnGuardar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnEditar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnEliminar))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lbl1)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(txtIdPago, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
+                                                .addComponent(txtFecha))
+                                            .addComponent(lbl2))))))
                         .addContainerGap(15, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -192,14 +238,22 @@ public class PruebaPago extends javax.swing.JFrame {
                     .addComponent(btnEliminar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(lbl1))
                     .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmbTipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbTipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(lbl2))
                 .addGap(1, 1, 1)
-                .addComponent(cmbMembresia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbMembresia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIdPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -231,6 +285,9 @@ public class PruebaPago extends javax.swing.JFrame {
             // Insertar el pago
             PagosDAO pagosDAO = new PagosDAO();
             boolean exito = pagosDAO.insertarPago(pago);
+            SessionManager session = SessionManager.getInstance();
+            txtIdAdmin.setText(String.valueOf(session.getUserId()));
+            txtIdAdmin.setEnabled(false);
 
             if (exito) {
                 JOptionPane.showMessageDialog(this, "Pago registrado correctamente");
@@ -238,6 +295,7 @@ public class PruebaPago extends javax.swing.JFrame {
                 cargarClientes();
                 cargarPagos();
                 cargarMembresias();
+                limpiar();
             } else {
                 JOptionPane.showMessageDialog(this, "Error al registrar el pago", "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -248,11 +306,68 @@ public class PruebaPago extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
+        try {
+            // Obtener el ID de pago de los campos
+            int idPago = Integer.parseInt(txtIdPago.getText());
+            int idCliente = Integer.parseInt(txtId.getText());
+            TipoDePago tipoPago = TipoDePago.valueOf(cmbTipoPago.getSelectedItem().toString());
+            int idAdmin = Integer.parseInt(txtIdAdmin.getText());
+            String membresia = cmbMembresia.getSelectedItem().toString();
+
+            // Crear un objeto de pago con los datos editados
+            Pagos pago = new Pagos(idPago, idAdmin, idCliente, tipoPago, new java.sql.Date(System.currentTimeMillis()), membresia);
+
+            // Actualizar el pago en la base de datos
+            PagosDAO pagosDAO = new PagosDAO();
+            boolean exito = pagosDAO.editarPago(pago);
+            SessionManager session = SessionManager.getInstance();
+            txtIdAdmin.setText(String.valueOf(session.getUserId()));
+            txtIdAdmin.setEnabled(false);// Este método debería actualizar el pago según su ID
+
+            if (exito) {
+                JOptionPane.showMessageDialog(this, "Pago actualizado correctamente");
+                cargarPagos();
+                limpiar();
+                btnGuardar.setEnabled(true);
+                txtIdAdmin.setEnabled(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al actualizar el pago", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Ingrese datos válidos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
+        int selectedRow = tblPagos.getSelectedRow();
+        if (selectedRow >= 0) {
+            int idPago = Integer.parseInt(tblPagos.getValueAt(selectedRow, 0).toString());  // Obtener el ID del pago
+
+            // Confirmar la eliminación
+            int response = JOptionPane.showConfirmDialog(this, "¿Está seguro de que desea eliminar este pago?", "Confirmación", JOptionPane.YES_NO_OPTION);
+            if (response == JOptionPane.YES_OPTION) {
+                // Eliminar el pago
+                PagosDAO pagosDAO = new PagosDAO();
+                boolean exito = pagosDAO.eliminarPago(idPago);
+                SessionManager session = SessionManager.getInstance();
+                txtIdAdmin.setText(String.valueOf(session.getUserId()));
+                txtIdAdmin.setEnabled(false);// Este método debería eliminar el pago por ID
+
+                if (exito) {
+                    JOptionPane.showMessageDialog(this, "Pago eliminado correctamente");
+                    cargarPagos();
+                    limpiar();
+                    btnGuardar.setEnabled(true);
+                    txtIdAdmin.setEnabled(true);
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "Error al eliminar el pago", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione un pago para eliminar", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -260,6 +375,29 @@ public class PruebaPago extends javax.swing.JFrame {
         p.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tblPagosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPagosMouseClicked
+        int row = tblPagos.rowAtPoint(evt.getPoint());
+        if (row >= 0) {
+            btnGuardar.setEnabled(false);
+            txtIdAdmin.setEnabled(false);
+
+            String idPago = tblPagos.getValueAt(row, 0).toString();
+            String idAdmin = tblPagos.getValueAt(row, 1).toString();
+            String idCliente = tblPagos.getValueAt(row, 2).toString();
+            String tipoPago = tblPagos.getValueAt(row, 3).toString();
+            String fechaPago = tblPagos.getValueAt(row, 4).toString();
+            String membresia = tblPagos.getValueAt(row, 5).toString();
+
+            // Cargar los datos de la fila seleccionada en los campos de texto
+            txtId.setText(idCliente);  // O el campo que corresponda con el ID del cliente
+            txtIdAdmin.setText(idAdmin);
+            cmbTipoPago.setSelectedItem(tipoPago);
+            cmbMembresia.setSelectedItem(membresia);
+            txtIdPago.setText(idPago);
+            txtFecha.setText(fechaPago);
+        }
+    }//GEN-LAST:event_tblPagosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -298,36 +436,26 @@ public class PruebaPago extends javax.swing.JFrame {
 
     private void cargarClientes() {
         try {
-            // Obtener lista de clientes desde la base de datos
             UsuarioDAO usuariosDao = new UsuarioDAO();
             List<Usuario> listaClientes = usuariosDao.obtenerClientes();
 
-            // Verificar si la lista tiene datos
             if (listaClientes == null || listaClientes.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "No se encontraron clientes.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+
                 return;
             }
 
-            // Crear modelo de tabla
             DefaultTableModel modelo = new DefaultTableModel();
             modelo.addColumn("ID");
             modelo.addColumn("Nombre");
             modelo.addColumn("Apellido");
 
-            // Agregar datos al modelo
             for (Usuario usuario : listaClientes) {
                 modelo.addRow(new Object[]{usuario.getId_Cliente(), usuario.getNombre_Cliente(), usuario.getApellido_Cliente()});
             }
-
-            // Asignar modelo a la tabla
             tblClientes.setModel(modelo);
-
-            // Verificar que la tabla fue correctamente cargada
-            System.out.println("Clientes cargados correctamente");
-
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al cargar clientes: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace(); // Esto imprimirá la excepción completa para ayudarte a depurar
+            e.printStackTrace();
         }
     }
 
@@ -381,6 +509,8 @@ public class PruebaPago extends javax.swing.JFrame {
             }
 
             // Agregar nombres de membresías al comboBox
+            cmbMembresia.removeAllItems();
+            cmbMembresia.addItem("Seleccione Un Tipo");
             for (Membresias membresia : listaMembresias) {
                 cmbMembresia.addItem(membresia.getNombre_Membresia()); // Suponiendo que tienes un método getNombre()
             }
@@ -410,9 +540,13 @@ public class PruebaPago extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lbl1;
+    private javax.swing.JLabel lbl2;
     private javax.swing.JTable tblClientes;
     private javax.swing.JTable tblPagos;
+    private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtIdAdmin;
+    private javax.swing.JTextField txtIdPago;
     // End of variables declaration//GEN-END:variables
 }
