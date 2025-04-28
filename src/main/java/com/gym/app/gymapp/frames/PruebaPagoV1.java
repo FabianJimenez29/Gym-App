@@ -61,8 +61,16 @@ public class PruebaPagoV1 extends javax.swing.JFrame {
         tblClientes = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblPagos = new javax.swing.JTable();
+        jLabel10 = new javax.swing.JLabel();
+        txtFecha = new javax.swing.JTextField();
+        jSeparator8 = new javax.swing.JSeparator();
+        jLabel11 = new javax.swing.JLabel();
+        txtIdPago = new javax.swing.JTextField();
+        jSeparator9 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -132,6 +140,7 @@ public class PruebaPagoV1 extends javax.swing.JFrame {
         });
 
         btnVolver.setIcon(new javax.swing.ImageIcon("C:\\Users\\Administrator\\Documents\\NetBeansProjects\\Gym-App\\src\\main\\resources\\volverr.png")); // NOI18N
+        btnVolver.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnVolverMouseClicked(evt);
@@ -145,6 +154,7 @@ public class PruebaPagoV1 extends javax.swing.JFrame {
         });
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/salir.png"))); // NOI18N
+        btnSalir.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnSalir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSalirMouseClicked(evt);
@@ -231,7 +241,44 @@ public class PruebaPagoV1 extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblPagos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPagosMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblPagos);
+
+        jLabel10.setFont(new java.awt.Font("Roboto Light", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel10.setText("Fecha");
+
+        txtFecha.setBackground(new java.awt.Color(255, 255, 255));
+        txtFecha.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        txtFecha.setForeground(new java.awt.Color(204, 204, 204));
+        txtFecha.setText("Ingrese la fecha");
+        txtFecha.setBorder(null);
+        txtFecha.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtFechaMousePressed(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Roboto Light", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel11.setText("ID Pago");
+
+        txtIdPago.setBackground(new java.awt.Color(255, 255, 255));
+        txtIdPago.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        txtIdPago.setForeground(new java.awt.Color(204, 204, 204));
+        txtIdPago.setText("Ingrese el ID de pago");
+        txtIdPago.setBorder(null);
+        txtIdPago.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtIdPagoMousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -260,11 +307,21 @@ public class PruebaPagoV1 extends javax.swing.JFrame {
                                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel7))
                                 .addGap(18, 18, 18)
-                                .addComponent(btnGuardar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnEditar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnEliminar))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(btnGuardar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnEditar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnEliminar))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtFecha)
+                                        .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel10))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtIdPago)
+                                        .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtIdAdmin)
@@ -292,13 +349,31 @@ public class PruebaPagoV1 extends javax.swing.JFrame {
                             .addComponent(btnEditar)
                             .addComponent(btnEliminar))))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmbTipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmbMembresia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmbTipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5)
+                        .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmbMembresia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(txtIdPago, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5)
+                        .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -312,7 +387,7 @@ public class PruebaPagoV1 extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
                         .addComponent(jLabel2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -332,35 +407,50 @@ public class PruebaPagoV1 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void txtIdMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtIdMousePressed
         if (txtId.getText().equals("Ingrese el ID")) {
-            txtId.setText("");
-            txtId.setForeground(Color.black);
-        }
-
-        // Resetea los otros campos solo si no tienen datos personalizados
-        if (txtIdAdmin.getText().isEmpty() || txtIdAdmin.getText().equals("Ingrese el ID")) {
-            txtIdAdmin.setText("Ingrese el ID");
-            txtIdAdmin.setForeground(Color.gray);
-        }
+        txtId.setText("");
+        txtId.setForeground(Color.black);
+    }
+    // Resetea los otros campos solo si no tienen datos personalizados
+    if (txtIdAdmin.getText().isEmpty() || txtIdAdmin.getText().equals("Ingrese el ID")) {
+        txtIdAdmin.setText("Ingrese el ID");
+        txtIdAdmin.setForeground(Color.gray);
+    }
+    if (txtFecha.getText().isEmpty() || txtFecha.getText().equals("Ingrese la fecha")) {
+        txtFecha.setText("Ingrese la fecha");
+        txtFecha.setForeground(Color.gray);
+    }
+    if (txtIdPago.getText().isEmpty() || txtIdPago.getText().equals("Ingrese el ID de pago")) {
+        txtIdPago.setText("Ingrese el ID de pago");
+        txtIdPago.setForeground(Color.gray);
+    }
     }//GEN-LAST:event_txtIdMousePressed
 
     private void txtIdAdminMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtIdAdminMousePressed
         if (txtIdAdmin.getText().equals("Ingrese el ID")) {
-            txtIdAdmin.setText("");
-            txtIdAdmin.setForeground(Color.black);
-        }
-
-        // Resetea los otros campos solo si no tienen datos personalizados
-        if (txtId.getText().isEmpty() || txtId.getText().equals("Ingrese el ID")) {
-            txtId.setText("Ingrese el ID");
-            txtId.setForeground(Color.gray);
-        }
+        txtIdAdmin.setText("");
+        txtIdAdmin.setForeground(Color.black);
+    }
+    // Resetea los otros campos solo si no tienen datos personalizados
+    if (txtId.getText().isEmpty() || txtId.getText().equals("Ingrese el ID")) {
+        txtId.setText("Ingrese el ID");
+        txtId.setForeground(Color.gray);
+    }
+    if (txtFecha.getText().isEmpty() || txtFecha.getText().equals("Ingrese la fecha")) {
+        txtFecha.setText("Ingrese la fecha");
+        txtFecha.setForeground(Color.gray);
+    }
+    if (txtIdPago.getText().isEmpty() || txtIdPago.getText().equals("Ingrese el ID de pago")) {
+        txtIdPago.setText("Ingrese el ID de pago");
+        txtIdPago.setForeground(Color.gray);
+    }
     }//GEN-LAST:event_txtIdAdminMousePressed
 
     private void btnVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseClicked
-        Principal p = new Principal();
-        p.setVisible(true);
+        PrincipalV1 principal = new PrincipalV1();
+        principal.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnVolverMouseClicked
 
@@ -402,9 +492,7 @@ public class PruebaPagoV1 extends javax.swing.JFrame {
             cmbTipoPago.addItem(tipo.name()); // Agregar opciones del enum
         }
     }
-    
-    
-    
+
     private void cargarClientes() {
         try {
             // Obtener lista de clientes desde la base de datos
@@ -439,7 +527,7 @@ public class PruebaPagoV1 extends javax.swing.JFrame {
             e.printStackTrace(); // Esto imprimirá la excepción completa para ayudarte a depurar
         }
     }
-    
+
     private void cargarMembresias() {
         try {
             // Obtener lista de membresías desde la base de datos
@@ -468,7 +556,7 @@ public class PruebaPagoV1 extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-    
+
     private void cargarPagos() {
         try {
             // Obtener lista de pagos desde la base de datos
@@ -502,7 +590,7 @@ public class PruebaPagoV1 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error al cargar pagos: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         try {
             int idCliente = Integer.parseInt(txtId.getText());
@@ -543,6 +631,69 @@ public class PruebaPagoV1 extends javax.swing.JFrame {
     private void txtIdAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdAdminActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdAdminActionPerformed
+
+    private void tblPagosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPagosMouseClicked
+        int row = tblPagos.rowAtPoint(evt.getPoint());
+        if (row >= 0) {
+            btnGuardar.setEnabled(false);
+            txtIdAdmin.setEnabled(false);
+
+            String idPago = tblPagos.getValueAt(row, 0).toString();
+            String idAdmin = tblPagos.getValueAt(row, 1).toString();
+            String idCliente = tblPagos.getValueAt(row, 2).toString();
+            String tipoPago = tblPagos.getValueAt(row, 3).toString();
+            String fechaPago = tblPagos.getValueAt(row, 4).toString();
+            String membresia = tblPagos.getValueAt(row, 5).toString();
+
+            // Cargar los datos de la fila seleccionada en los campos de texto
+            txtId.setText(idCliente);  // O el campo que corresponda con el ID del cliente
+            txtIdAdmin.setText(idAdmin);
+            cmbTipoPago.setSelectedItem(tipoPago);
+            cmbMembresia.setSelectedItem(membresia);
+            txtIdPago.setText(idPago);
+            txtFecha.setText(fechaPago);
+        }
+    }//GEN-LAST:event_tblPagosMouseClicked
+
+    private void txtFechaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFechaMousePressed
+        if (txtFecha.getText().equals("Ingrese la fecha")) {
+        txtFecha.setText("");
+        txtFecha.setForeground(Color.black);
+    }
+    // Resetea los otros campos solo si no tienen datos personalizados
+    if (txtId.getText().isEmpty() || txtId.getText().equals("Ingrese el ID")) {
+        txtId.setText("Ingrese el ID");
+        txtId.setForeground(Color.gray);
+    }
+    if (txtIdAdmin.getText().isEmpty() || txtIdAdmin.getText().equals("Ingrese el ID")) {
+        txtIdAdmin.setText("Ingrese el ID");
+        txtIdAdmin.setForeground(Color.gray);
+    }
+    if (txtIdPago.getText().isEmpty() || txtIdPago.getText().equals("Ingrese el ID de pago")) {
+        txtIdPago.setText("Ingrese el ID de pago");
+        txtIdPago.setForeground(Color.gray);
+    }
+    }//GEN-LAST:event_txtFechaMousePressed
+
+    private void txtIdPagoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtIdPagoMousePressed
+        if (txtIdPago.getText().equals("Ingrese el ID de pago")) {
+        txtIdPago.setText("");
+        txtIdPago.setForeground(Color.black);
+    }
+    // Resetea los otros campos solo si no tienen datos personalizados
+    if (txtId.getText().isEmpty() || txtId.getText().equals("Ingrese el ID")) {
+        txtId.setText("Ingrese el ID");
+        txtId.setForeground(Color.gray);
+    }
+    if (txtIdAdmin.getText().isEmpty() || txtIdAdmin.getText().equals("Ingrese el ID")) {
+        txtIdAdmin.setText("Ingrese el ID");
+        txtIdAdmin.setForeground(Color.gray);
+    }
+    if (txtFecha.getText().isEmpty() || txtFecha.getText().equals("Ingrese la fecha")) {
+        txtFecha.setText("Ingrese la fecha");
+        txtFecha.setForeground(Color.gray);
+    }
+    }//GEN-LAST:event_txtIdPagoMousePressed
 
     /**
      * @param args the command line arguments
@@ -589,6 +740,8 @@ public class PruebaPagoV1 extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbTipoPago;
     private javax.swing.JPanel header4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -599,9 +752,13 @@ public class PruebaPagoV1 extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JSeparator jSeparator9;
     private javax.swing.JTable tblClientes;
     private javax.swing.JTable tblPagos;
+    private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtIdAdmin;
+    private javax.swing.JTextField txtIdPago;
     // End of variables declaration//GEN-END:variables
 }

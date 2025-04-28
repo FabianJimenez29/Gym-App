@@ -23,6 +23,11 @@ public class MembresiasFrameV1 extends javax.swing.JFrame {
 
     public MembresiasFrameV1() {
         initComponents();
+        initComponents();
+        cargarMembresia();
+        cargarTipo();
+        limpiar();
+        txtId.setEnabled(false);
     }
 
     /**
@@ -59,6 +64,8 @@ public class MembresiasFrameV1 extends javax.swing.JFrame {
         tblMembresia = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -75,6 +82,7 @@ public class MembresiasFrameV1 extends javax.swing.JFrame {
         });
 
         btnVolver.setIcon(new javax.swing.ImageIcon("C:\\Users\\Administrator\\Documents\\NetBeansProjects\\Gym-App\\src\\main\\resources\\volverr.png")); // NOI18N
+        btnVolver.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnVolverMouseClicked(evt);
@@ -88,6 +96,7 @@ public class MembresiasFrameV1 extends javax.swing.JFrame {
         });
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/salir.png"))); // NOI18N
+        btnSalir.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnSalir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSalirMouseClicked(evt);
@@ -107,7 +116,7 @@ public class MembresiasFrameV1 extends javax.swing.JFrame {
             .addGroup(header4Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(btnVolver)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 799, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 791, Short.MAX_VALUE)
                 .addComponent(btnSalir)
                 .addGap(15, 15, 15))
         );
@@ -331,7 +340,7 @@ public class MembresiasFrameV1 extends javax.swing.JFrame {
                             .addComponent(btnEditar)
                             .addComponent(btnEliminar)))
                     .addComponent(jScrollPane1))
-                .addGap(0, 84, Short.MAX_VALUE))
+                .addGap(0, 80, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -349,8 +358,8 @@ public class MembresiasFrameV1 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseClicked
-        Principal p = new Principal();
-        p.setVisible(true);
+        PrincipalV1 principal = new PrincipalV1();
+        principal.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnVolverMouseClicked
 
@@ -545,15 +554,30 @@ public class MembresiasFrameV1 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error al cargar membresías: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+    private void cargarTipo() {
+        try {
+            cmbTipoMembresia.removeAllItems();
+            cmbTipoMembresia.addItem("Seleccione Un Tipo");
+
+            for (TipoMembresia tipo : TipoMembresia.values()) {
+                cmbTipoMembresia.addItem(tipo.name());
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al cargar membresías: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+    }
     
-    public void limpiar(){
+
+    public void limpiar() {
         txtId.setText("");
         txtDuracion.setText("");
         txtNombre.setText("");
         txtPrecio.setText("");
         cmbTipoMembresia.setSelectedItem("Seleccione Un Tipo");
     }
-    
+
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
 
         try {

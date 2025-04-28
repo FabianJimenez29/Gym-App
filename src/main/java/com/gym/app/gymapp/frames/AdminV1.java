@@ -4,7 +4,12 @@
  */
 package com.gym.app.gymapp.frames;
 
+import com.gym.app.gymapp.classes.Administrador;
+import com.gym.app.gymapp.features.AdminDAO;
 import java.awt.Color;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,6 +21,8 @@ public class AdminV1 extends javax.swing.JFrame {
 
     public AdminV1() {
         initComponents();
+        txtContrasena.setEnabled(false);
+        cargarUsuario();
     }
 
     /**
@@ -28,32 +35,32 @@ public class AdminV1 extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        txtNombre = new javax.swing.JTextField();
+        txtNameAdmin = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtApellido = new javax.swing.JTextField();
+        txtLastnameAdmin = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
-        txtEdad = new javax.swing.JTextField();
+        txtAgeAdmin = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
-        txtTelefono = new javax.swing.JTextField();
+        txtPhoneAdmin = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
-        txtCorreo = new javax.swing.JTextField();
+        txtMailAdmin = new javax.swing.JTextField();
         jSeparator5 = new javax.swing.JSeparator();
         jLabel6 = new javax.swing.JLabel();
-        txtID = new javax.swing.JTextField();
+        txtIdAdmin = new javax.swing.JTextField();
         jSeparator6 = new javax.swing.JSeparator();
         jLabel7 = new javax.swing.JLabel();
         jSeparator7 = new javax.swing.JSeparator();
-        txtPassword = new javax.swing.JPasswordField();
-        btnGuardar = new javax.swing.JButton();
+        txtContrasena = new javax.swing.JPasswordField();
+        btnGuardarAdmin = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblAdmin = new javax.swing.JTable();
         header = new javax.swing.JPanel();
         btnVolver = new javax.swing.JLabel();
         btnSalir = new javax.swing.JLabel();
@@ -66,22 +73,22 @@ public class AdminV1 extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtNombre.setBackground(new java.awt.Color(255, 255, 255));
-        txtNombre.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        txtNombre.setForeground(new java.awt.Color(204, 204, 204));
-        txtNombre.setText("Ingrese el nombre");
-        txtNombre.setBorder(null);
-        txtNombre.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtNameAdmin.setBackground(new java.awt.Color(255, 255, 255));
+        txtNameAdmin.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        txtNameAdmin.setForeground(new java.awt.Color(204, 204, 204));
+        txtNameAdmin.setText("Ingrese el nombre");
+        txtNameAdmin.setBorder(null);
+        txtNameAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtNombreMousePressed(evt);
+                txtNameAdminMousePressed(evt);
             }
         });
-        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+        txtNameAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreActionPerformed(evt);
+                txtNameAdminActionPerformed(evt);
             }
         });
-        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 230, 30));
+        jPanel1.add(txtNameAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 230, 30));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 230, 20));
 
         jLabel1.setFont(new java.awt.Font("Roboto Light", 1, 14)); // NOI18N
@@ -96,22 +103,22 @@ public class AdminV1 extends javax.swing.JFrame {
         jLabel2.setText("Apellido");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 60, 30));
 
-        txtApellido.setBackground(new java.awt.Color(255, 255, 255));
-        txtApellido.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        txtApellido.setForeground(new java.awt.Color(204, 204, 204));
-        txtApellido.setText("Ingrese el apellido");
-        txtApellido.setBorder(null);
-        txtApellido.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtLastnameAdmin.setBackground(new java.awt.Color(255, 255, 255));
+        txtLastnameAdmin.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        txtLastnameAdmin.setForeground(new java.awt.Color(204, 204, 204));
+        txtLastnameAdmin.setText("Ingrese el apellido");
+        txtLastnameAdmin.setBorder(null);
+        txtLastnameAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtApellidoMousePressed(evt);
+                txtLastnameAdminMousePressed(evt);
             }
         });
-        txtApellido.addActionListener(new java.awt.event.ActionListener() {
+        txtLastnameAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtApellidoActionPerformed(evt);
+                txtLastnameAdminActionPerformed(evt);
             }
         });
-        jPanel1.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 230, 30));
+        jPanel1.add(txtLastnameAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 230, 30));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 230, 20));
 
         jLabel3.setFont(new java.awt.Font("Roboto Light", 1, 14)); // NOI18N
@@ -120,17 +127,17 @@ public class AdminV1 extends javax.swing.JFrame {
         jLabel3.setText("Edad");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 40, 30));
 
-        txtEdad.setBackground(new java.awt.Color(255, 255, 255));
-        txtEdad.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        txtEdad.setForeground(new java.awt.Color(204, 204, 204));
-        txtEdad.setText("Ingrese la edad");
-        txtEdad.setBorder(null);
-        txtEdad.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtAgeAdmin.setBackground(new java.awt.Color(255, 255, 255));
+        txtAgeAdmin.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        txtAgeAdmin.setForeground(new java.awt.Color(204, 204, 204));
+        txtAgeAdmin.setText("Ingrese la edad");
+        txtAgeAdmin.setBorder(null);
+        txtAgeAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtEdadMousePressed(evt);
+                txtAgeAdminMousePressed(evt);
             }
         });
-        jPanel1.add(txtEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 230, 30));
+        jPanel1.add(txtAgeAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 230, 30));
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 230, 20));
 
         jLabel4.setFont(new java.awt.Font("Roboto Light", 1, 14)); // NOI18N
@@ -139,17 +146,17 @@ public class AdminV1 extends javax.swing.JFrame {
         jLabel4.setText("Telefono");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 60, 30));
 
-        txtTelefono.setBackground(new java.awt.Color(255, 255, 255));
-        txtTelefono.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        txtTelefono.setForeground(new java.awt.Color(204, 204, 204));
-        txtTelefono.setText("Ingrese el telefono");
-        txtTelefono.setBorder(null);
-        txtTelefono.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtPhoneAdmin.setBackground(new java.awt.Color(255, 255, 255));
+        txtPhoneAdmin.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        txtPhoneAdmin.setForeground(new java.awt.Color(204, 204, 204));
+        txtPhoneAdmin.setText("Ingrese el telefono");
+        txtPhoneAdmin.setBorder(null);
+        txtPhoneAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtTelefonoMousePressed(evt);
+                txtPhoneAdminMousePressed(evt);
             }
         });
-        jPanel1.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 230, 30));
+        jPanel1.add(txtPhoneAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 230, 30));
         jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 230, 20));
 
         jLabel5.setFont(new java.awt.Font("Roboto Light", 1, 14)); // NOI18N
@@ -158,22 +165,22 @@ public class AdminV1 extends javax.swing.JFrame {
         jLabel5.setText("Correo");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 50, 30));
 
-        txtCorreo.setBackground(new java.awt.Color(255, 255, 255));
-        txtCorreo.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        txtCorreo.setForeground(new java.awt.Color(204, 204, 204));
-        txtCorreo.setText("Ingrese el correo");
-        txtCorreo.setBorder(null);
-        txtCorreo.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtMailAdmin.setBackground(new java.awt.Color(255, 255, 255));
+        txtMailAdmin.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        txtMailAdmin.setForeground(new java.awt.Color(204, 204, 204));
+        txtMailAdmin.setText("Ingrese el correo");
+        txtMailAdmin.setBorder(null);
+        txtMailAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtCorreoMousePressed(evt);
+                txtMailAdminMousePressed(evt);
             }
         });
-        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
+        txtMailAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCorreoActionPerformed(evt);
+                txtMailAdminActionPerformed(evt);
             }
         });
-        jPanel1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 230, 30));
+        jPanel1.add(txtMailAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 230, 30));
         jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, 230, 20));
 
         jLabel6.setFont(new java.awt.Font("Roboto Light", 1, 14)); // NOI18N
@@ -182,17 +189,17 @@ public class AdminV1 extends javax.swing.JFrame {
         jLabel6.setText("ID");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 20, 30));
 
-        txtID.setBackground(new java.awt.Color(255, 255, 255));
-        txtID.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        txtID.setForeground(new java.awt.Color(204, 204, 204));
-        txtID.setText("Ingrese el ID");
-        txtID.setBorder(null);
-        txtID.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtIdAdmin.setBackground(new java.awt.Color(255, 255, 255));
+        txtIdAdmin.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        txtIdAdmin.setForeground(new java.awt.Color(204, 204, 204));
+        txtIdAdmin.setText("Ingrese el ID");
+        txtIdAdmin.setBorder(null);
+        txtIdAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtIDMousePressed(evt);
+                txtIdAdminMousePressed(evt);
             }
         });
-        jPanel1.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 230, 30));
+        jPanel1.add(txtIdAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 230, 30));
         jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 230, 20));
 
         jLabel7.setFont(new java.awt.Font("Roboto Light", 1, 14)); // NOI18N
@@ -202,23 +209,28 @@ public class AdminV1 extends javax.swing.JFrame {
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, 80, 30));
         jPanel1.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 230, 20));
 
-        txtPassword.setBackground(new java.awt.Color(255, 255, 255));
-        txtPassword.setText("****************");
-        txtPassword.setBorder(null);
-        txtPassword.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtContrasena.setBackground(new java.awt.Color(255, 255, 255));
+        txtContrasena.setText("****************");
+        txtContrasena.setBorder(null);
+        txtContrasena.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtPasswordMousePressed(evt);
+                txtContrasenaMousePressed(evt);
             }
         });
-        txtPassword.addActionListener(new java.awt.event.ActionListener() {
+        txtContrasena.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPasswordActionPerformed(evt);
+                txtContrasenaActionPerformed(evt);
             }
         });
-        jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 440, 230, 30));
+        jPanel1.add(txtContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 440, 230, 30));
 
-        btnGuardar.setText("Guardar");
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 480, -1, -1));
+        btnGuardarAdmin.setText("Guardar");
+        btnGuardarAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarAdminActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnGuardarAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 480, -1, -1));
 
         btnEditar.setText("Editar");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
@@ -229,9 +241,14 @@ public class AdminV1 extends javax.swing.JFrame {
         jPanel1.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 480, -1, -1));
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 520, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblAdmin.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -242,7 +259,12 @@ public class AdminV1 extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        tblAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblAdminMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblAdmin);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, 540, 470));
 
@@ -259,6 +281,7 @@ public class AdminV1 extends javax.swing.JFrame {
         });
 
         btnVolver.setIcon(new javax.swing.ImageIcon("C:\\Users\\Administrator\\Documents\\NetBeansProjects\\Gym-App\\src\\main\\resources\\volverr.png")); // NOI18N
+        btnVolver.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnVolverMouseClicked(evt);
@@ -272,6 +295,7 @@ public class AdminV1 extends javax.swing.JFrame {
         });
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/salir.png"))); // NOI18N
+        btnSalir.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnSalir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSalirMouseClicked(evt);
@@ -291,7 +315,7 @@ public class AdminV1 extends javax.swing.JFrame {
             .addGroup(headerLayout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(btnVolver)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 804, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 796, Short.MAX_VALUE)
                 .addComponent(btnSalir)
                 .addGap(15, 15, 15))
         );
@@ -302,7 +326,7 @@ public class AdminV1 extends javax.swing.JFrame {
                 .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSalir)
                     .addComponent(btnVolver))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         jPanel1.add(header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 50));
@@ -323,20 +347,45 @@ public class AdminV1 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+    private void txtNameAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameAdminActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreActionPerformed
+    }//GEN-LAST:event_txtNameAdminActionPerformed
 
-    private void txtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoActionPerformed
+    private void txtLastnameAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLastnameAdminActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtApellidoActionPerformed
+    }//GEN-LAST:event_txtLastnameAdminActionPerformed
 
-    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
+    private void txtMailAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMailAdminActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCorreoActionPerformed
+    }//GEN-LAST:event_txtMailAdminActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
+        try {
+            int idAdmin = Integer.parseInt(txtIdAdmin.getText());
+            String nombreAdmin = txtNameAdmin.getText();
+            String apellidoAdmin = txtLastnameAdmin.getText();
+            int edadAdmin = Integer.parseInt(txtAgeAdmin.getText());
+            int telefonoAdmin = Integer.parseInt(txtPhoneAdmin.getText());
+            String correoAdmin = txtMailAdmin.getText();
+            String contrasena = txtContrasena.getText();
+
+            Administrador cliente = new Administrador(idAdmin, nombreAdmin, apellidoAdmin, edadAdmin, telefonoAdmin, correoAdmin, contrasena);
+
+            AdminDAO adminDAO = new AdminDAO();
+            boolean clienteActualizado = adminDAO.editarAdministrador(cliente);
+            cargarUsuario();
+            limpiar();
+            btnGuardarAdmin.setEnabled(true);
+            txtContrasena.setEnabled(false);
+
+            if (clienteActualizado) {
+                JOptionPane.showMessageDialog(this, "Cliente actualizado exitosamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al actualizar el cliente", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void headerMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_headerMousePressed
@@ -363,8 +412,8 @@ public class AdminV1 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirMouseExited
 
     private void btnVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseClicked
-        Principal p = new Principal();
-        p.setVisible(true);
+        PrincipalV1 principal = new PrincipalV1();
+        principal.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnVolverMouseClicked
 
@@ -376,271 +425,398 @@ public class AdminV1 extends javax.swing.JFrame {
         btnVolver.setBackground(Color.white);
     }//GEN-LAST:event_btnVolverMouseExited
 
-    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
+    private void txtContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContrasenaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPasswordActionPerformed
+    }//GEN-LAST:event_txtContrasenaActionPerformed
 
-    private void txtIDMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtIDMousePressed
-        if (txtID.getText().equals("Ingrese el ID")) {
-            txtID.setText("");
-            txtID.setForeground(Color.black);
+    private void txtIdAdminMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtIdAdminMousePressed
+        if (txtIdAdmin.getText().equals("Ingrese el ID")) {
+            txtIdAdmin.setText("");
+            txtIdAdmin.setForeground(Color.black);
         }
 
         // Resetea los otros campos solo si no tienen datos personalizados
-        if (txtNombre.getText().isEmpty() || txtNombre.getText().equals("Ingrese el nombre")) {
-            txtNombre.setText("Ingrese el nombre");
-            txtNombre.setForeground(Color.gray);
+        if (txtNameAdmin.getText().isEmpty() || txtNameAdmin.getText().equals("Ingrese el nombre")) {
+            txtNameAdmin.setText("Ingrese el nombre");
+            txtNameAdmin.setForeground(Color.gray);
         }
 
-        if (txtApellido.getText().isEmpty() || txtApellido.getText().equals("Ingrese el apellido")) {
-            txtApellido.setText("Ingrese el apellido");
-            txtApellido.setForeground(Color.gray);
+        if (txtLastnameAdmin.getText().isEmpty() || txtLastnameAdmin.getText().equals("Ingrese el apellido")) {
+            txtLastnameAdmin.setText("Ingrese el apellido");
+            txtLastnameAdmin.setForeground(Color.gray);
         }
 
-        if (txtEdad.getText().isEmpty() || txtEdad.getText().equals("Ingrese la edad")) {
-            txtEdad.setText("Ingrese la edad");
-            txtEdad.setForeground(Color.gray);
+        if (txtAgeAdmin.getText().isEmpty() || txtAgeAdmin.getText().equals("Ingrese la edad")) {
+            txtAgeAdmin.setText("Ingrese la edad");
+            txtAgeAdmin.setForeground(Color.gray);
         }
 
-        if (txtTelefono.getText().isEmpty() || txtTelefono.getText().equals("Ingrese el telefono")) {
-            txtTelefono.setText("Ingrese el telefono");
-            txtTelefono.setForeground(Color.gray);
+        if (txtPhoneAdmin.getText().isEmpty() || txtPhoneAdmin.getText().equals("Ingrese el telefono")) {
+            txtPhoneAdmin.setText("Ingrese el telefono");
+            txtPhoneAdmin.setForeground(Color.gray);
         }
 
-        if (txtCorreo.getText().isEmpty() || txtCorreo.getText().equals("Ingrese el correo")) {
-            txtCorreo.setText("Ingrese el correo");
-            txtCorreo.setForeground(Color.gray);
+        if (txtMailAdmin.getText().isEmpty() || txtMailAdmin.getText().equals("Ingrese el correo")) {
+            txtMailAdmin.setText("Ingrese el correo");
+            txtMailAdmin.setForeground(Color.gray);
         }
 
-        if (txtPassword.getText().isEmpty() || txtPassword.getText().equals("****************")) {
-            txtPassword.setText("****************");
-            txtPassword.setForeground(Color.gray);
+        if (txtContrasena.getText().isEmpty() || txtContrasena.getText().equals("****************")) {
+            txtContrasena.setText("****************");
+            txtContrasena.setForeground(Color.gray);
         }
-    }//GEN-LAST:event_txtIDMousePressed
+    }//GEN-LAST:event_txtIdAdminMousePressed
 
-    private void txtNombreMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreMousePressed
-        if (txtID.getText().isEmpty() || txtID.getText().equals("Ingrese el ID")) {
-            txtID.setText("Ingrese el ID");
-            txtID.setForeground(Color.gray);
-        }
-
-        if (txtNombre.getText().equals("Ingrese el nombre")) {
-            txtNombre.setText("");
-            txtNombre.setForeground(Color.BLACK);
+    private void txtNameAdminMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNameAdminMousePressed
+        if (txtIdAdmin.getText().isEmpty() || txtIdAdmin.getText().equals("Ingrese el ID")) {
+            txtIdAdmin.setText("Ingrese el ID");
+            txtIdAdmin.setForeground(Color.gray);
         }
 
-        if (txtApellido.getText().isEmpty() || txtApellido.getText().equals("Ingrese el apellido")) {
-            txtApellido.setText("Ingrese el apellido");
-            txtApellido.setForeground(Color.gray);
+        if (txtNameAdmin.getText().equals("Ingrese el nombre")) {
+            txtNameAdmin.setText("");
+            txtNameAdmin.setForeground(Color.BLACK);
         }
 
-        if (txtEdad.getText().isEmpty() || txtEdad.getText().equals("Ingrese la edad")) {
-            txtEdad.setText("Ingrese la edad");
-            txtEdad.setForeground(Color.gray);
+        if (txtLastnameAdmin.getText().isEmpty() || txtLastnameAdmin.getText().equals("Ingrese el apellido")) {
+            txtLastnameAdmin.setText("Ingrese el apellido");
+            txtLastnameAdmin.setForeground(Color.gray);
         }
 
-        if (txtTelefono.getText().isEmpty() || txtTelefono.getText().equals("Ingrese el telefono")) {
-            txtTelefono.setText("Ingrese el telefono");
-            txtTelefono.setForeground(Color.gray);
+        if (txtAgeAdmin.getText().isEmpty() || txtAgeAdmin.getText().equals("Ingrese la edad")) {
+            txtAgeAdmin.setText("Ingrese la edad");
+            txtAgeAdmin.setForeground(Color.gray);
         }
 
-        if (txtCorreo.getText().isEmpty() || txtCorreo.getText().equals("Ingrese el correo")) {
-            txtCorreo.setText("Ingrese el correo");
-            txtCorreo.setForeground(Color.gray);
+        if (txtPhoneAdmin.getText().isEmpty() || txtPhoneAdmin.getText().equals("Ingrese el telefono")) {
+            txtPhoneAdmin.setText("Ingrese el telefono");
+            txtPhoneAdmin.setForeground(Color.gray);
         }
 
-        if (txtPassword.getText().isEmpty() || txtPassword.getText().equals("****************")) {
-            txtPassword.setText("****************");
-            txtPassword.setForeground(Color.gray);
+        if (txtMailAdmin.getText().isEmpty() || txtMailAdmin.getText().equals("Ingrese el correo")) {
+            txtMailAdmin.setText("Ingrese el correo");
+            txtMailAdmin.setForeground(Color.gray);
         }
 
-    }//GEN-LAST:event_txtNombreMousePressed
-
-    private void txtApellidoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtApellidoMousePressed
-        if (txtID.getText().isEmpty() || txtID.getText().equals("Ingrese el ID")) {
-            txtID.setText("Ingrese el ID");
-            txtID.setForeground(Color.gray);
+        if (txtContrasena.getText().isEmpty() || txtContrasena.getText().equals("****************")) {
+            txtContrasena.setText("****************");
+            txtContrasena.setForeground(Color.gray);
         }
 
-        if (txtNombre.getText().isEmpty() || txtNombre.getText().equals("Ingrese el nombre")) {
-            txtNombre.setText("Ingrese el nombre");
-            txtNombre.setForeground(Color.gray);
+    }//GEN-LAST:event_txtNameAdminMousePressed
+
+    private void txtLastnameAdminMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtLastnameAdminMousePressed
+        if (txtIdAdmin.getText().isEmpty() || txtIdAdmin.getText().equals("Ingrese el ID")) {
+            txtIdAdmin.setText("Ingrese el ID");
+            txtIdAdmin.setForeground(Color.gray);
         }
 
-        if (txtApellido.getText().equals("Ingrese el apellido")) {
-            txtApellido.setText("");
-            txtApellido.setForeground(Color.BLACK);
+        if (txtNameAdmin.getText().isEmpty() || txtNameAdmin.getText().equals("Ingrese el nombre")) {
+            txtNameAdmin.setText("Ingrese el nombre");
+            txtNameAdmin.setForeground(Color.gray);
         }
 
-        if (txtEdad.getText().isEmpty() || txtEdad.getText().equals("Ingrese la edad")) {
-            txtEdad.setText("Ingrese la edad");
-            txtEdad.setForeground(Color.gray);
+        if (txtLastnameAdmin.getText().equals("Ingrese el apellido")) {
+            txtLastnameAdmin.setText("");
+            txtLastnameAdmin.setForeground(Color.BLACK);
         }
 
-        if (txtTelefono.getText().isEmpty() || txtTelefono.getText().equals("Ingrese el telefono")) {
-            txtTelefono.setText("Ingrese el telefono");
-            txtTelefono.setForeground(Color.gray);
+        if (txtAgeAdmin.getText().isEmpty() || txtAgeAdmin.getText().equals("Ingrese la edad")) {
+            txtAgeAdmin.setText("Ingrese la edad");
+            txtAgeAdmin.setForeground(Color.gray);
         }
 
-        if (txtCorreo.getText().isEmpty() || txtCorreo.getText().equals("Ingrese el correo")) {
-            txtCorreo.setText("Ingrese el correo");
-            txtCorreo.setForeground(Color.gray);
+        if (txtPhoneAdmin.getText().isEmpty() || txtPhoneAdmin.getText().equals("Ingrese el telefono")) {
+            txtPhoneAdmin.setText("Ingrese el telefono");
+            txtPhoneAdmin.setForeground(Color.gray);
         }
 
-        if (txtPassword.getText().isEmpty() || txtPassword.getText().equals("****************")) {
-            txtPassword.setText("****************");
-            txtPassword.setForeground(Color.gray);
-        }
-    }//GEN-LAST:event_txtApellidoMousePressed
-
-    private void txtEdadMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEdadMousePressed
-        if (txtID.getText().isEmpty() || txtID.getText().equals("Ingrese el ID")) {
-            txtID.setText("Ingrese el ID");
-            txtID.setForeground(Color.gray);
+        if (txtMailAdmin.getText().isEmpty() || txtMailAdmin.getText().equals("Ingrese el correo")) {
+            txtMailAdmin.setText("Ingrese el correo");
+            txtMailAdmin.setForeground(Color.gray);
         }
 
-        if (txtNombre.getText().isEmpty() || txtNombre.getText().equals("Ingrese el nombre")) {
-            txtNombre.setText("Ingrese el nombre");
-            txtNombre.setForeground(Color.gray);
+        if (txtContrasena.getText().isEmpty() || txtContrasena.getText().equals("****************")) {
+            txtContrasena.setText("****************");
+            txtContrasena.setForeground(Color.gray);
+        }
+    }//GEN-LAST:event_txtLastnameAdminMousePressed
+
+    private void txtAgeAdminMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAgeAdminMousePressed
+        if (txtIdAdmin.getText().isEmpty() || txtIdAdmin.getText().equals("Ingrese el ID")) {
+            txtIdAdmin.setText("Ingrese el ID");
+            txtIdAdmin.setForeground(Color.gray);
         }
 
-        if (txtApellido.getText().isEmpty() || txtApellido.getText().equals("Ingrese el apellido")) {
-            txtApellido.setText("Ingrese el apellido");
-            txtApellido.setForeground(Color.gray);
+        if (txtNameAdmin.getText().isEmpty() || txtNameAdmin.getText().equals("Ingrese el nombre")) {
+            txtNameAdmin.setText("Ingrese el nombre");
+            txtNameAdmin.setForeground(Color.gray);
         }
 
-        if (txtEdad.getText().equals("Ingrese la edad")) {
-            txtEdad.setText("");
-            txtEdad.setForeground(Color.BLACK);
+        if (txtLastnameAdmin.getText().isEmpty() || txtLastnameAdmin.getText().equals("Ingrese el apellido")) {
+            txtLastnameAdmin.setText("Ingrese el apellido");
+            txtLastnameAdmin.setForeground(Color.gray);
         }
 
-        if (txtTelefono.getText().isEmpty() || txtTelefono.getText().equals("Ingrese el telefono")) {
-            txtTelefono.setText("Ingrese el telefono");
-            txtTelefono.setForeground(Color.gray);
+        if (txtAgeAdmin.getText().equals("Ingrese la edad")) {
+            txtAgeAdmin.setText("");
+            txtAgeAdmin.setForeground(Color.BLACK);
         }
 
-        if (txtCorreo.getText().isEmpty() || txtCorreo.getText().equals("Ingrese el correo")) {
-            txtCorreo.setText("Ingrese el correo");
-            txtCorreo.setForeground(Color.gray);
+        if (txtPhoneAdmin.getText().isEmpty() || txtPhoneAdmin.getText().equals("Ingrese el telefono")) {
+            txtPhoneAdmin.setText("Ingrese el telefono");
+            txtPhoneAdmin.setForeground(Color.gray);
         }
 
-        if (txtPassword.getText().isEmpty() || txtPassword.getText().equals("****************")) {
-            txtPassword.setText("****************");
-            txtPassword.setForeground(Color.gray);
-        }
-    }//GEN-LAST:event_txtEdadMousePressed
-
-    private void txtTelefonoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTelefonoMousePressed
-        if (txtID.getText().isEmpty() || txtID.getText().equals("Ingrese el ID")) {
-            txtID.setText("Ingrese el ID");
-            txtID.setForeground(Color.gray);
+        if (txtMailAdmin.getText().isEmpty() || txtMailAdmin.getText().equals("Ingrese el correo")) {
+            txtMailAdmin.setText("Ingrese el correo");
+            txtMailAdmin.setForeground(Color.gray);
         }
 
-        if (txtNombre.getText().isEmpty() || txtNombre.getText().equals("Ingrese el nombre")) {
-            txtNombre.setText("Ingrese el nombre");
-            txtNombre.setForeground(Color.gray);
+        if (txtContrasena.getText().isEmpty() || txtContrasena.getText().equals("****************")) {
+            txtContrasena.setText("****************");
+            txtContrasena.setForeground(Color.gray);
+        }
+    }//GEN-LAST:event_txtAgeAdminMousePressed
+
+    private void txtPhoneAdminMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPhoneAdminMousePressed
+        if (txtIdAdmin.getText().isEmpty() || txtIdAdmin.getText().equals("Ingrese el ID")) {
+            txtIdAdmin.setText("Ingrese el ID");
+            txtIdAdmin.setForeground(Color.gray);
         }
 
-        if (txtApellido.getText().isEmpty() || txtApellido.getText().equals("Ingrese el apellido")) {
-            txtApellido.setText("Ingrese el apellido");
-            txtApellido.setForeground(Color.gray);
+        if (txtNameAdmin.getText().isEmpty() || txtNameAdmin.getText().equals("Ingrese el nombre")) {
+            txtNameAdmin.setText("Ingrese el nombre");
+            txtNameAdmin.setForeground(Color.gray);
         }
 
-        if (txtEdad.getText().isEmpty() || txtEdad.getText().equals("Ingrese la edad")) {
-            txtEdad.setText("Ingrese la edad");
-            txtEdad.setForeground(Color.gray);
+        if (txtLastnameAdmin.getText().isEmpty() || txtLastnameAdmin.getText().equals("Ingrese el apellido")) {
+            txtLastnameAdmin.setText("Ingrese el apellido");
+            txtLastnameAdmin.setForeground(Color.gray);
         }
 
-        if (txtTelefono.getText().equals("Ingrese el telefono")) {
-            txtTelefono.setText("");
-            txtTelefono.setForeground(Color.BLACK);
+        if (txtAgeAdmin.getText().isEmpty() || txtAgeAdmin.getText().equals("Ingrese la edad")) {
+            txtAgeAdmin.setText("Ingrese la edad");
+            txtAgeAdmin.setForeground(Color.gray);
         }
 
-        if (txtCorreo.getText().isEmpty() || txtCorreo.getText().equals("Ingrese el correo")) {
-            txtCorreo.setText("Ingrese el correo");
-            txtCorreo.setForeground(Color.gray);
+        if (txtPhoneAdmin.getText().equals("Ingrese el telefono")) {
+            txtPhoneAdmin.setText("");
+            txtPhoneAdmin.setForeground(Color.BLACK);
         }
 
-        if (txtPassword.getText().isEmpty() || txtPassword.getText().equals("****************")) {
-            txtPassword.setText("****************");
-            txtPassword.setForeground(Color.gray);
-        }
-    }//GEN-LAST:event_txtTelefonoMousePressed
-
-    private void txtCorreoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCorreoMousePressed
-        if (txtID.getText().isEmpty() || txtID.getText().equals("Ingrese el ID")) {
-            txtID.setText("Ingrese el ID");
-            txtID.setForeground(Color.gray);
+        if (txtMailAdmin.getText().isEmpty() || txtMailAdmin.getText().equals("Ingrese el correo")) {
+            txtMailAdmin.setText("Ingrese el correo");
+            txtMailAdmin.setForeground(Color.gray);
         }
 
-        if (txtNombre.getText().isEmpty() || txtNombre.getText().equals("Ingrese el nombre")) {
-            txtNombre.setText("Ingrese el nombre");
-            txtNombre.setForeground(Color.gray);
+        if (txtContrasena.getText().isEmpty() || txtContrasena.getText().equals("****************")) {
+            txtContrasena.setText("****************");
+            txtContrasena.setForeground(Color.gray);
+        }
+    }//GEN-LAST:event_txtPhoneAdminMousePressed
+
+    private void txtMailAdminMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMailAdminMousePressed
+        if (txtIdAdmin.getText().isEmpty() || txtIdAdmin.getText().equals("Ingrese el ID")) {
+            txtIdAdmin.setText("Ingrese el ID");
+            txtIdAdmin.setForeground(Color.gray);
         }
 
-        if (txtApellido.getText().isEmpty() || txtApellido.getText().equals("Ingrese el apellido")) {
-            txtApellido.setText("Ingrese el apellido");
-            txtApellido.setForeground(Color.gray);
+        if (txtNameAdmin.getText().isEmpty() || txtNameAdmin.getText().equals("Ingrese el nombre")) {
+            txtNameAdmin.setText("Ingrese el nombre");
+            txtNameAdmin.setForeground(Color.gray);
         }
 
-        if (txtEdad.getText().isEmpty() || txtEdad.getText().equals("Ingrese la edad")) {
-            txtEdad.setText("Ingrese la edad");
-            txtEdad.setForeground(Color.gray);
+        if (txtLastnameAdmin.getText().isEmpty() || txtLastnameAdmin.getText().equals("Ingrese el apellido")) {
+            txtLastnameAdmin.setText("Ingrese el apellido");
+            txtLastnameAdmin.setForeground(Color.gray);
         }
 
-        if (txtTelefono.getText().isEmpty() || txtTelefono.getText().equals("Ingrese el telefono")) {
-            txtTelefono.setText("Ingrese el telefono");
-            txtTelefono.setForeground(Color.gray);
+        if (txtAgeAdmin.getText().isEmpty() || txtAgeAdmin.getText().equals("Ingrese la edad")) {
+            txtAgeAdmin.setText("Ingrese la edad");
+            txtAgeAdmin.setForeground(Color.gray);
         }
 
-        if (txtCorreo.getText().equals("Ingrese el correo")) {
-            txtCorreo.setText("");
-            txtCorreo.setForeground(Color.BLACK);
+        if (txtPhoneAdmin.getText().isEmpty() || txtPhoneAdmin.getText().equals("Ingrese el telefono")) {
+            txtPhoneAdmin.setText("Ingrese el telefono");
+            txtPhoneAdmin.setForeground(Color.gray);
         }
 
-        if (txtPassword.getText().isEmpty() || txtPassword.getText().equals("****************")) {
-            txtPassword.setText("****************");
-            txtPassword.setForeground(Color.gray);
-        }
-    }//GEN-LAST:event_txtCorreoMousePressed
-
-    private void txtPasswordMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPasswordMousePressed
-        if (txtID.getText().isEmpty() || txtID.getText().equals("Ingrese el ID")) {
-            txtID.setText("Ingrese el ID");
-            txtID.setForeground(Color.gray);
+        if (txtMailAdmin.getText().equals("Ingrese el correo")) {
+            txtMailAdmin.setText("");
+            txtMailAdmin.setForeground(Color.BLACK);
         }
 
-        if (txtNombre.getText().isEmpty() || txtNombre.getText().equals("Ingrese el nombre")) {
-            txtNombre.setText("Ingrese el nombre");
-            txtNombre.setForeground(Color.gray);
+        if (txtContrasena.getText().isEmpty() || txtContrasena.getText().equals("****************")) {
+            txtContrasena.setText("****************");
+            txtContrasena.setForeground(Color.gray);
+        }
+    }//GEN-LAST:event_txtMailAdminMousePressed
+
+    private void txtContrasenaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtContrasenaMousePressed
+        if (txtIdAdmin.getText().isEmpty() || txtIdAdmin.getText().equals("Ingrese el ID")) {
+            txtIdAdmin.setText("Ingrese el ID");
+            txtIdAdmin.setForeground(Color.gray);
         }
 
-        if (txtApellido.getText().isEmpty() || txtApellido.getText().equals("Ingrese el apellido")) {
-            txtApellido.setText("Ingrese el apellido");
-            txtApellido.setForeground(Color.gray);
+        if (txtNameAdmin.getText().isEmpty() || txtNameAdmin.getText().equals("Ingrese el nombre")) {
+            txtNameAdmin.setText("Ingrese el nombre");
+            txtNameAdmin.setForeground(Color.gray);
         }
 
-        if (txtEdad.getText().isEmpty() || txtEdad.getText().equals("Ingrese la edad")) {
-            txtEdad.setText("Ingrese la edad");
-            txtEdad.setForeground(Color.gray);
+        if (txtLastnameAdmin.getText().isEmpty() || txtLastnameAdmin.getText().equals("Ingrese el apellido")) {
+            txtLastnameAdmin.setText("Ingrese el apellido");
+            txtLastnameAdmin.setForeground(Color.gray);
         }
 
-        if (txtTelefono.getText().isEmpty() || txtTelefono.getText().equals("Ingrese el telefono")) {
-            txtTelefono.setText("Ingrese el telefono");
-            txtTelefono.setForeground(Color.gray);
+        if (txtAgeAdmin.getText().isEmpty() || txtAgeAdmin.getText().equals("Ingrese la edad")) {
+            txtAgeAdmin.setText("Ingrese la edad");
+            txtAgeAdmin.setForeground(Color.gray);
         }
 
-        if (txtCorreo.getText().isEmpty() || txtCorreo.getText().equals("Ingrese el correo")) {
-            txtCorreo.setText("Ingrese el correo");
-            txtCorreo.setForeground(Color.gray);
+        if (txtPhoneAdmin.getText().isEmpty() || txtPhoneAdmin.getText().equals("Ingrese el telefono")) {
+            txtPhoneAdmin.setText("Ingrese el telefono");
+            txtPhoneAdmin.setForeground(Color.gray);
         }
 
-        if (txtPassword.getText().equals("****************")) {
-            txtPassword.setText("");
-            txtPassword.setForeground(Color.BLACK);
+        if (txtMailAdmin.getText().isEmpty() || txtMailAdmin.getText().equals("Ingrese el correo")) {
+            txtMailAdmin.setText("Ingrese el correo");
+            txtMailAdmin.setForeground(Color.gray);
         }
-    }//GEN-LAST:event_txtPasswordMousePressed
 
+        if (txtContrasena.getText().equals("****************")) {
+            txtContrasena.setText("");
+            txtContrasena.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_txtContrasenaMousePressed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        try {
+            int idAdmin = Integer.parseInt(txtIdAdmin.getText());
+
+            // Confirmar la eliminación
+            int confirmacion = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que deseas eliminar este administrador?",
+                    "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
+
+            if (confirmacion == JOptionPane.YES_OPTION) {
+                AdminDAO adminDAO = new AdminDAO();
+                boolean clienteEliminado = adminDAO.eliminarAdministrador(idAdmin);
+                cargarUsuario();  // Recargar la lista de usuarios
+                limpiar();
+                jSeparator7.setEnabled(true);
+                txtContrasena.setEnabled(false);
+
+                if (clienteEliminado) {
+                    JOptionPane.showMessageDialog(this, "Administrador eliminado exitosamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    // Limpiar los campos de texto
+                } else {
+                    JOptionPane.showMessageDialog(this, "Error al eliminar el Administrador", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnGuardarAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarAdminActionPerformed
+        // Obtener los datos desde los campos de texto del formulario
+        int idAdministrador = Integer.parseInt(txtIdAdmin.getText());  // Suponiendo que el ID es un número entero
+        String nombreAdministrador = txtNameAdmin.getText();
+        String apellidoAdministrador = txtLastnameAdmin.getText();
+        int edadAdministrador = Integer.parseInt(txtAgeAdmin.getText());  // Suponiendo que la edad es un número entero
+        int telefonoAdministrador = Integer.parseInt(txtPhoneAdmin.getText()); // Suponiendo que el teléfono es un número
+        String correoAdministrador = txtMailAdmin.getText();
+
+        // Generar la contraseña automáticamente
+        String contrasenaGenerada = generarContrasena(nombreAdministrador, apellidoAdministrador, edadAdministrador);
+
+        // Crear el objeto Administrador
+        Administrador administrador = new Administrador(idAdministrador, nombreAdministrador, apellidoAdministrador, edadAdministrador, telefonoAdministrador, correoAdministrador, contrasenaGenerada);
+
+        // Llamar al método del DAO para guardar el administrador en la base de datos
+        AdminDAO adminDAO = new AdminDAO();
+        boolean adminGuardado = adminDAO.insertarAdministrador(administrador);
+        cargarUsuario();
+        limpiar();
+
+        if (adminGuardado) {
+            // Mostrar mensaje de éxito
+            JOptionPane.showMessageDialog(this, "Administrador guardado exitosamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            // Mostrar mensaje de error
+            JOptionPane.showMessageDialog(this, "Error al guardar el administrador", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnGuardarAdminActionPerformed
+
+    private void tblAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAdminMouseClicked
+        int fila = tblAdmin.getSelectedRow();
+        if (fila >= 0) {
+            btnGuardarAdmin.setEnabled(false);
+            txtContrasena.setEnabled(true);
+            txtIdAdmin.setText(tblAdmin.getValueAt(fila, 0).toString());
+            txtNameAdmin.setText(tblAdmin.getValueAt(fila, 1).toString());
+            txtLastnameAdmin.setText(tblAdmin.getValueAt(fila, 2).toString());
+            txtAgeAdmin.setText(tblAdmin.getValueAt(fila, 3).toString());
+            txtPhoneAdmin.setText(tblAdmin.getValueAt(fila, 4).toString());
+            txtMailAdmin.setText(tblAdmin.getValueAt(fila, 5).toString());
+            txtContrasena.setText(tblAdmin.getValueAt(fila, 6).toString());
+        }
+    }//GEN-LAST:event_tblAdminMouseClicked
+
+    private String generarContrasena(String nombre, String apellido, int edad) {
+        return nombre.substring(0, Math.min(3, nombre.length()))
+                + apellido.substring(0, Math.min(4, apellido.length()))
+                + edad
+                + "_gym2025";
+    }
+    
+    private void cargarUsuario() {
+        try {
+            // Obtener lista de membresías desde la base de datos
+            AdminDAO adminDAO = new AdminDAO();
+            List<Administrador> listaUsuarios = adminDAO.obtenerAdministradoresTotales();
+
+            // Crear modelo de tabla
+            DefaultTableModel modelo = new DefaultTableModel();
+            modelo.addColumn("ID Admin");
+            modelo.addColumn("Nombre");
+            modelo.addColumn("Apellido");
+            modelo.addColumn("Edad");
+            modelo.addColumn("Telefono");
+            modelo.addColumn("Correo");
+            modelo.addColumn("Contrasena");
+
+            // Agregar datos al modelo
+            for (Administrador administrador : listaUsuarios) {
+                modelo.addRow(new Object[]{
+                    administrador.getId_Administrador(),
+                    administrador.getNombre_Administrador(),
+                    administrador.getApellido_Administrador(),
+                    administrador.getEdad_Administrador(),
+                    administrador.getNumero_Administrador(),
+                    administrador.getCorreo_Administrador(),
+                    administrador.getContrasena_Administrador()
+
+                });
+            }
+
+            // Asignar modelo a la tabla
+            tblAdmin.setModel(modelo);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al cargar membresías: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public void limpiar() {
+        txtAgeAdmin.setText("");
+        txtIdAdmin.setText("");
+        txtLastnameAdmin.setText("");
+        txtMailAdmin.setText("");
+        txtNameAdmin.setText("");
+        txtPhoneAdmin.setText("");
+        txtContrasena.setText("");
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -680,7 +856,7 @@ public class AdminV1 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnGuardarAdmin;
     private javax.swing.JLabel btnSalir;
     private javax.swing.JLabel btnVolver;
     private javax.swing.JPanel header;
@@ -700,13 +876,13 @@ public class AdminV1 extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtApellido;
-    private javax.swing.JTextField txtCorreo;
-    private javax.swing.JTextField txtEdad;
-    private javax.swing.JTextField txtID;
-    private javax.swing.JTextField txtNombre;
-    private javax.swing.JPasswordField txtPassword;
-    private javax.swing.JTextField txtTelefono;
+    private javax.swing.JTable tblAdmin;
+    private javax.swing.JTextField txtAgeAdmin;
+    private javax.swing.JPasswordField txtContrasena;
+    private javax.swing.JTextField txtIdAdmin;
+    private javax.swing.JTextField txtLastnameAdmin;
+    private javax.swing.JTextField txtMailAdmin;
+    private javax.swing.JTextField txtNameAdmin;
+    private javax.swing.JTextField txtPhoneAdmin;
     // End of variables declaration//GEN-END:variables
 }

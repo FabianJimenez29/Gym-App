@@ -20,6 +20,7 @@ public class ClienteV1 extends javax.swing.JFrame {
     int xMouse, yMouse;
     public ClienteV1() {
         initComponents();
+        cargarUsuario();
     }
 
     /**
@@ -64,6 +65,8 @@ public class ClienteV1 extends javax.swing.JFrame {
         tblClientes = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
 
         bg.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -80,6 +83,7 @@ public class ClienteV1 extends javax.swing.JFrame {
         });
 
         btnVolver.setIcon(new javax.swing.ImageIcon("C:\\Users\\Administrator\\Documents\\NetBeansProjects\\Gym-App\\src\\main\\resources\\volverr.png")); // NOI18N
+        btnVolver.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnVolverMouseClicked(evt);
@@ -93,6 +97,7 @@ public class ClienteV1 extends javax.swing.JFrame {
         });
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/salir.png"))); // NOI18N
+        btnSalir.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnSalir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSalirMouseClicked(evt);
@@ -114,15 +119,15 @@ public class ClienteV1 extends javax.swing.JFrame {
                 .addComponent(btnVolver)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSalir)
-                .addGap(15, 15, 15))
+                .addContainerGap())
         );
         header1Layout.setVerticalGroup(
             header1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(header1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(header1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSalir)
-                    .addComponent(btnVolver))
+                .addGroup(header1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnVolver, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
@@ -414,7 +419,7 @@ public class ClienteV1 extends javax.swing.JFrame {
                         .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -432,8 +437,8 @@ public class ClienteV1 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseClicked
-        Principal p = new Principal();
-        p.setVisible(true);
+        PrincipalV1 principal = new PrincipalV1();
+        principal.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnVolverMouseClicked
 
@@ -698,15 +703,79 @@ public class ClienteV1 extends javax.swing.JFrame {
     }//GEN-LAST:event_txtMailClientActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
+        int idCliente = Integer.parseInt(txtIdClient.getText());
+        String nombreCliente = txtNameClient.getText();
+        String apellidoCliente = txtLastnameClient.getText();
+        int edadCliente = Integer.parseInt(txtAgeClient.getText());
+        int telefonoCliente = Integer.parseInt(txtPhoneClient.getText());
+        String correoCliente = txtMailClient.getText();
+
+        Usuario cliente = new Usuario(idCliente, nombreCliente, apellidoCliente, edadCliente, telefonoCliente, correoCliente);
+
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        boolean clienteGuardado = usuarioDAO.insertarUsuario(cliente);
+        cargarUsuario();
+        limpiar();
+
+        if (clienteGuardado) {
+            JOptionPane.showMessageDialog(this, "Cliente guardado exitosamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al guardar el cliente", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnEditar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditar1ActionPerformed
-        // TODO add your handling code here:
+        try {
+            int idCliente = Integer.parseInt(txtIdClient.getText());
+            String nombreCliente = txtNameClient.getText();
+            String apellidoCliente = txtLastnameClient.getText();
+            int edadCliente = Integer.parseInt(txtAgeClient.getText());
+            int telefonoCliente = Integer.parseInt(txtPhoneClient.getText());
+            String correoCliente = txtMailClient.getText();
+
+            Usuario cliente = new Usuario(idCliente, nombreCliente, apellidoCliente, edadCliente, telefonoCliente, correoCliente);
+
+            UsuarioDAO usuarioDAO = new UsuarioDAO();
+            boolean clienteActualizado = usuarioDAO.editarUsuario(cliente);
+            cargarUsuario();
+            limpiar();
+            btnGuardar.setEnabled(true);
+
+            if (clienteActualizado) {
+                JOptionPane.showMessageDialog(this, "Cliente actualizado exitosamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al actualizar el cliente", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnEditar1ActionPerformed
 
     private void btnEliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminar1ActionPerformed
-        // TODO add your handling code here:
+        try {
+            int idCliente = Integer.parseInt(txtIdClient.getText());
+
+            // Confirmar la eliminación
+            int confirmacion = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que deseas eliminar este cliente?",
+                    "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
+
+            if (confirmacion == JOptionPane.YES_OPTION) {
+                UsuarioDAO usuarioDAO = new UsuarioDAO();
+                boolean clienteEliminado = usuarioDAO.eliminarUsuario(idCliente);
+                cargarUsuario();  // Recargar la lista de usuarios
+                limpiar();
+                btnGuardar.setEnabled(true);
+
+                if (clienteEliminado) {
+                    JOptionPane.showMessageDialog(this, "Cliente eliminado exitosamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    // Limpiar los campos de texto
+                } else {
+                    JOptionPane.showMessageDialog(this, "Error al eliminar el cliente", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnEliminar1ActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
@@ -717,7 +786,7 @@ public class ClienteV1 extends javax.swing.JFrame {
             // Verificar que el campo de búsqueda no esté vacío
             if (buscar.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Por favor ingresa el nombre y apellido para la búsqueda.",
-                    "Advertencia", JOptionPane.WARNING_MESSAGE);
+                        "Advertencia", JOptionPane.WARNING_MESSAGE);
                 return;
             }
 
@@ -725,7 +794,7 @@ public class ClienteV1 extends javax.swing.JFrame {
             String[] partes = buscar.split(" ");
             if (partes.length != 2) {
                 JOptionPane.showMessageDialog(this, "Por favor ingresa el nombre y apellido separados por un espacio.",
-                    "Error de formato", JOptionPane.ERROR_MESSAGE);
+                        "Error de formato", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
@@ -739,14 +808,14 @@ public class ClienteV1 extends javax.swing.JFrame {
             // Verificar si se encontraron clientes
             if (listaClientes.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "No se encontraron clientes con ese nombre y apellido.",
-                    "Sin Resultados", JOptionPane.INFORMATION_MESSAGE);
+                        "Sin Resultados", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 // Cargar los resultados en la tabla
                 cargarTablaClientes(listaClientes);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al realizar la búsqueda: " + e.getMessage(),
-                "Error", JOptionPane.ERROR_MESSAGE);
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
@@ -866,6 +935,7 @@ public class ClienteV1 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtBuscarClienteMousePressed
 
+    
     /**
      * @param args the command line arguments
      */
