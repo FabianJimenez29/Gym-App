@@ -1,6 +1,7 @@
 package com.gym.app.gymapp;
 
 import com.gym.app.gymapp.features.MailService;
+import com.gym.app.gymapp.frames.LoginFrameV1;
 
 /**
  *
@@ -9,11 +10,10 @@ import com.gym.app.gymapp.features.MailService;
 public class GymApp {
 
     public static void main(String[] args) {
-        MailService.sendEmail(
-                "gymcabita2025@outlook.com",
-                "¡Funciona desde GymApp!",
-                "<p><strong>Este es un correo de prueba con Resend</strong></p>"
-        );
+        // Abrir primero el LoginFrameV1
+        javax.swing.SwingUtilities.invokeLater(() -> {
+            new LoginFrameV1();  // Inicia el LoginFrameV1
+        });
     }
 
 }

@@ -22,6 +22,11 @@ public class LoginFrameV1 extends javax.swing.JFrame {
     public LoginFrameV1() {
         initComponents();
         txtContrasena.setEchoChar('*');
+        setTitle("Login");
+        pack();
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null); 
+        setVisible(true);
     }
 
     /**
