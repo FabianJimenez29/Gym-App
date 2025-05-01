@@ -212,8 +212,8 @@ public class PrincipalV1 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPagosMouseClicked
 
     private void btnMembresiasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMembresiasMouseClicked
-        MembresiasFrameV1 m = new MembresiasFrameV1();
-        m.setVisible(true);
+        MembresiasFrameV1 mem = new MembresiasFrameV1();
+        mem.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnMembresiasMouseClicked
 

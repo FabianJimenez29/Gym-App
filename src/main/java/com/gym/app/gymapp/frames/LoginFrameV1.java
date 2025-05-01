@@ -206,28 +206,20 @@ public class LoginFrameV1 extends javax.swing.JFrame {
 
     private void txtCorreoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCorreoMousePressed
         if (txtCorreo.getText().equals("Ingrese el correo")) {
-        txtCorreo.setText("");
-        txtCorreo.setForeground(Color.BLACK);
-    }
-    
-    // Verifica si el campo de contraseña está vacío O tiene el placeholder
-    if (txtContrasena.getText().isEmpty() || txtContrasena.getText().equals("****************")) {
-        txtContrasena.setText("****************");
-        txtContrasena.setForeground(Color.gray);
-    }
+            txtCorreo.setText("");
+            txtCorreo.setForeground(Color.BLACK);
+        }
+
+
     }//GEN-LAST:event_txtCorreoMousePressed
 
     private void txtContrasenaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtContrasenaMousePressed
         if (txtContrasena.getText().equals("****************")) {
-        txtContrasena.setText("");
-        txtContrasena.setForeground(Color.BLACK);
-    }
-    
-    // Verifica si el campo de correo está vacío O tiene el placeholder
-    if (txtCorreo.getText().isEmpty() || txtCorreo.getText().equals("Ingrese el correo")) {
-        txtCorreo.setText("Ingrese el correo");
-        txtCorreo.setForeground(Color.gray);
-    }
+            txtContrasena.setText("");
+            txtContrasena.setForeground(Color.BLACK);
+        }
+
+
     }//GEN-LAST:event_txtContrasenaMousePressed
 
     /**

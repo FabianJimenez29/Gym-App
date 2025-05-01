@@ -23,7 +23,6 @@ public class MembresiasFrameV1 extends javax.swing.JFrame {
 
     public MembresiasFrameV1() {
         initComponents();
-        initComponents();
         cargarMembresia();
         cargarTipo();
         limpiar();

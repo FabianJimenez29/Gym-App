@@ -88,35 +88,35 @@ public class LoginFrame extends javax.swing.JFrame {
     private void txtLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLoginActionPerformed
         String correo = txtCorreo.getText().trim();
         String contrasena = new String(txtContrasena.getPassword()).trim(); // Cambiado para JPasswordField
-        
+
         // Validar campos vacíos
-        if(correo.isEmpty() || contrasena.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor complete todos los campos", 
-                "Error", JOptionPane.ERROR_MESSAGE);
+        if (correo.isEmpty() || contrasena.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor complete todos los campos",
+                    "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+
         try {
             // Verificar credenciales en la base de datos
             AdminDAO adminDAO = new AdminDAO();
             Administrador admin = adminDAO.validarCredenciales(correo, contrasena);
-            
-            if(admin != null) {
+
+            if (admin != null) {
                 // Iniciar sesión como administrador
                 SessionManager session = SessionManager.getInstance();
                 session.startAdminSession(admin);
-                
+
                 // Redirigir al menú principal
                 Principal principal = new Principal();
                 principal.setVisible(true);
                 dispose();
             } else {
-                JOptionPane.showMessageDialog(this, "Credenciales incorrectas", 
-                    "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Credenciales incorrectas",
+                        "Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error al iniciar sesión: " + e.getMessage(), 
-                "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error al iniciar sesión: " + e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
     }//GEN-LAST:event_txtLoginActionPerformed

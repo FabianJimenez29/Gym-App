@@ -27,13 +27,15 @@ public class PruebaPago extends javax.swing.JFrame {
      */
     public PruebaPago() {
         initComponents();
-        
+
         SessionManager session = SessionManager.getInstance();
         if (!session.isAdmin()) {
             JOptionPane.showMessageDialog(this, "Acceso no autorizado", "Error", JOptionPane.ERROR_MESSAGE);
             dispose();
             return;
         }
+        txtIdAdmin.setText(String.valueOf(session.getUserId()));
+        txtIdAdmin.setEnabled(false);
 
         cargarTiposDePago();
         cargarClientes();
@@ -60,7 +62,7 @@ public class PruebaPago extends javax.swing.JFrame {
         cmbTipoPago.removeAllItems();
         cmbTipoPago.addItem("Seleccione Una Opcion");
         for (TipoDePago tipo : TipoDePago.values()) {
-            cmbTipoPago.addItem(tipo.name()); 
+            cmbTipoPago.addItem(tipo.name());
         }
     }
 
