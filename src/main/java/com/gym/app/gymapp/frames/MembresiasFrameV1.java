@@ -39,9 +39,6 @@ public class MembresiasFrameV1 extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        header4 = new javax.swing.JPanel();
-        btnVolver = new javax.swing.JLabel();
-        btnSalir = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtId = new javax.swing.JTextField();
         jSeparator6 = new javax.swing.JSeparator();
@@ -61,80 +58,18 @@ public class MembresiasFrameV1 extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMembresia = new javax.swing.JTable();
+        header = new javax.swing.JPanel();
+        btnVolver = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
-        setResizable(false);
+        setLocationByPlatform(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        header4.setBackground(new java.awt.Color(255, 255, 255));
-        header4.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                header4MouseDragged(evt);
-            }
-        });
-        header4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                header4MousePressed(evt);
-            }
-        });
-
-        btnVolver.setIcon(new javax.swing.ImageIcon("C:\\Users\\Administrator\\Documents\\NetBeansProjects\\Gym-App\\src\\main\\resources\\volverr.png")); // NOI18N
-        btnVolver.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnVolverMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnVolverMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnVolverMouseExited(evt);
-            }
-        });
-
-        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/salir.png"))); // NOI18N
-        btnSalir.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btnSalir.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnSalirMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnSalirMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnSalirMouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout header4Layout = new javax.swing.GroupLayout(header4);
-        header4.setLayout(header4Layout);
-        header4Layout.setHorizontalGroup(
-            header4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(header4Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(btnVolver)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 791, Short.MAX_VALUE)
-                .addComponent(btnSalir)
-                .addGap(15, 15, 15))
-        );
-        header4Layout.setVerticalGroup(
-            header4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(header4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(header4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSalir)
-                    .addComponent(btnVolver))
-                .addContainerGap(12, Short.MAX_VALUE))
-        );
-
         jLabel6.setFont(new java.awt.Font("Roboto Light", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel6.setText("ID Membresia");
 
-        txtId.setBackground(new java.awt.Color(255, 255, 255));
         txtId.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtId.setForeground(new java.awt.Color(204, 204, 204));
         txtId.setText("Ingrese el ID");
@@ -151,11 +86,9 @@ public class MembresiasFrameV1 extends javax.swing.JFrame {
         });
 
         jLabel7.setFont(new java.awt.Font("Roboto Light", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel7.setText("Nombre");
 
-        txtNombre.setBackground(new java.awt.Color(255, 255, 255));
         txtNombre.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtNombre.setForeground(new java.awt.Color(204, 204, 204));
         txtNombre.setText("Ingrese el nombre");
@@ -170,11 +103,9 @@ public class MembresiasFrameV1 extends javax.swing.JFrame {
         });
 
         jLabel8.setFont(new java.awt.Font("Roboto Light", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel8.setText("Duracion");
 
-        txtDuracion.setBackground(new java.awt.Color(255, 255, 255));
         txtDuracion.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtDuracion.setForeground(new java.awt.Color(204, 204, 204));
         txtDuracion.setText("Ingrese la duracion");
@@ -186,11 +117,9 @@ public class MembresiasFrameV1 extends javax.swing.JFrame {
         });
 
         Precio.setFont(new java.awt.Font("Roboto Light", 1, 14)); // NOI18N
-        Precio.setForeground(new java.awt.Color(0, 0, 0));
         Precio.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         Precio.setText("Precio");
 
-        txtPrecio.setBackground(new java.awt.Color(255, 255, 255));
         txtPrecio.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtPrecio.setForeground(new java.awt.Color(204, 204, 204));
         txtPrecio.setText("Ingrese el precio");
@@ -201,7 +130,6 @@ public class MembresiasFrameV1 extends javax.swing.JFrame {
             }
         });
 
-        cmbTipoMembresia.setBackground(new java.awt.Color(255, 255, 255));
         cmbTipoMembresia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbTipoMembresia.setBorder(null);
         cmbTipoMembresia.addActionListener(new java.awt.event.ActionListener() {
@@ -211,13 +139,10 @@ public class MembresiasFrameV1 extends javax.swing.JFrame {
         });
 
         jLabel10.setFont(new java.awt.Font("Roboto Light", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel10.setText("Tipo de Membresia");
 
-        btnGuardar.setBackground(new java.awt.Color(255, 255, 255));
         btnGuardar.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        btnGuardar.setForeground(new java.awt.Color(0, 0, 0));
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -225,9 +150,7 @@ public class MembresiasFrameV1 extends javax.swing.JFrame {
             }
         });
 
-        btnEditar.setBackground(new java.awt.Color(255, 255, 255));
         btnEditar.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        btnEditar.setForeground(new java.awt.Color(0, 0, 0));
         btnEditar.setText("Editar");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -235,9 +158,7 @@ public class MembresiasFrameV1 extends javax.swing.JFrame {
             }
         });
 
-        btnEliminar.setBackground(new java.awt.Color(255, 255, 255));
         btnEliminar.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        btnEliminar.setForeground(new java.awt.Color(0, 0, 0));
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -263,11 +184,53 @@ public class MembresiasFrameV1 extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblMembresia);
 
+        header.setBackground(new java.awt.Color(255, 255, 255));
+        header.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                headerMouseDragged(evt);
+            }
+        });
+        header.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                headerMousePressed(evt);
+            }
+        });
+
+        btnVolver.setIcon(new javax.swing.ImageIcon("C:\\Users\\Administrator\\Documents\\NetBeansProjects\\Gym-App\\src\\main\\resources\\volverr.png")); // NOI18N
+        btnVolver.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVolverMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnVolverMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnVolverMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
+        header.setLayout(headerLayout);
+        headerLayout.setHorizontalGroup(
+            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(btnVolver)
+                .addContainerGap(847, Short.MAX_VALUE))
+        );
+        headerLayout.setVerticalGroup(
+            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnVolver)
+                .addContainerGap(8, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(header4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -294,12 +257,15 @@ public class MembresiasFrameV1 extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(header4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -355,44 +321,6 @@ public class MembresiasFrameV1 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseClicked
-        PrincipalV1 principal = new PrincipalV1();
-        principal.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_btnVolverMouseClicked
-
-    private void btnVolverMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseEntered
-        btnVolver.setBackground(Color.red);
-    }//GEN-LAST:event_btnVolverMouseEntered
-
-    private void btnVolverMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseExited
-        btnVolver.setBackground(Color.white);
-    }//GEN-LAST:event_btnVolverMouseExited
-
-    private void btnSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_btnSalirMouseClicked
-
-    private void btnSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseEntered
-        btnSalir.setBackground(Color.red);
-    }//GEN-LAST:event_btnSalirMouseEntered
-
-    private void btnSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseExited
-        btnSalir.setBackground(Color.white);
-    }//GEN-LAST:event_btnSalirMouseExited
-
-    private void header4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_header4MouseDragged
-        int x = evt.getXOnScreen();
-        int y = evt.getYOnScreen();
-
-        this.setLocation(x - xMouse, y - yMouse);
-    }//GEN-LAST:event_header4MouseDragged
-
-    private void header4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_header4MousePressed
-        xMouse = evt.getX();
-        yMouse = evt.getY();
-    }//GEN-LAST:event_header4MousePressed
 
     private void txtIdMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtIdMousePressed
         if (txtId.getText().equals("Ingrese el ID")) {
@@ -634,6 +562,31 @@ public class MembresiasFrameV1 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdActionPerformed
 
+    private void btnVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseClicked
+        PrincipalV1 principal = new PrincipalV1();
+        principal.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnVolverMouseClicked
+
+    private void btnVolverMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseEntered
+        btnVolver.setBackground(Color.red);
+    }//GEN-LAST:event_btnVolverMouseEntered
+
+    private void btnVolverMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseExited
+        btnVolver.setBackground(Color.white);
+    }//GEN-LAST:event_btnVolverMouseExited
+
+    private void headerMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_headerMouseDragged
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - xMouse, y - yMouse);
+    }//GEN-LAST:event_headerMouseDragged
+
+    private void headerMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_headerMousePressed
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+    }//GEN-LAST:event_headerMousePressed
+
     /**
      * @param args the command line arguments
      */
@@ -674,10 +627,9 @@ public class MembresiasFrameV1 extends javax.swing.JFrame {
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
-    private javax.swing.JLabel btnSalir;
     private javax.swing.JLabel btnVolver;
     private javax.swing.JComboBox<String> cmbTipoMembresia;
-    private javax.swing.JPanel header4;
+    private javax.swing.JPanel header;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

@@ -50,6 +50,7 @@ public class LoginFrameV1 extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocationByPlatform(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -60,7 +61,6 @@ public class LoginFrameV1 extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Iniciar Sesion");
 
-        txtCorreo.setBackground(new java.awt.Color(255, 255, 255));
         txtCorreo.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtCorreo.setText("Ingrese el correo");
         txtCorreo.setBorder(null);
@@ -70,7 +70,6 @@ public class LoginFrameV1 extends javax.swing.JFrame {
             }
         });
 
-        txtContrasena.setBackground(new java.awt.Color(255, 255, 255));
         txtContrasena.setText("****************");
         txtContrasena.setBorder(null);
         txtContrasena.addMouseListener(new java.awt.event.MouseAdapter() {

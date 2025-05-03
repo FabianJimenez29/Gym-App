@@ -63,12 +63,9 @@ public class AdminV1 extends javax.swing.JFrame {
         tblAdmin = new javax.swing.JTable();
         header = new javax.swing.JPanel();
         btnVolver = new javax.swing.JLabel();
-        btnSalir = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
-        setUndecorated(true);
-        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -294,20 +291,6 @@ public class AdminV1 extends javax.swing.JFrame {
             }
         });
 
-        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/salir.png"))); // NOI18N
-        btnSalir.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btnSalir.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnSalirMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnSalirMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnSalirMouseExited(evt);
-            }
-        });
-
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
         header.setLayout(headerLayout);
         headerLayout.setHorizontalGroup(
@@ -315,17 +298,13 @@ public class AdminV1 extends javax.swing.JFrame {
             .addGroup(headerLayout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(btnVolver)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 796, Short.MAX_VALUE)
-                .addComponent(btnSalir)
-                .addGap(15, 15, 15))
+                .addContainerGap(847, Short.MAX_VALUE))
         );
         headerLayout.setVerticalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(headerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSalir)
-                    .addComponent(btnVolver))
+                .addComponent(btnVolver)
                 .addContainerGap(8, Short.MAX_VALUE))
         );
 
@@ -398,18 +377,6 @@ public class AdminV1 extends javax.swing.JFrame {
         int y = evt.getYOnScreen();
         this.setLocation(x - xMouse, y - yMouse);
     }//GEN-LAST:event_headerMouseDragged
-
-    private void btnSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_btnSalirMouseClicked
-
-    private void btnSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseEntered
-        btnSalir.setBackground(Color.red);
-    }//GEN-LAST:event_btnSalirMouseEntered
-
-    private void btnSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseExited
-        btnSalir.setBackground(Color.white);
-    }//GEN-LAST:event_btnSalirMouseExited
 
     private void btnVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseClicked
         PrincipalV1 principal = new PrincipalV1();
@@ -857,7 +824,6 @@ public class AdminV1 extends javax.swing.JFrame {
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardarAdmin;
-    private javax.swing.JLabel btnSalir;
     private javax.swing.JLabel btnVolver;
     private javax.swing.JPanel header;
     private javax.swing.JLabel jLabel1;
