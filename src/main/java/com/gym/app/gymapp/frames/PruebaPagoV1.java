@@ -157,6 +157,7 @@ public class PruebaPagoV1 extends javax.swing.JFrame {
             }
         });
 
+        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/volverr.png"))); // NOI18N
         btnVolver.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -199,9 +200,9 @@ public class PruebaPagoV1 extends javax.swing.JFrame {
             header4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(header4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(header4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSalir)
-                    .addComponent(btnVolver))
+                .addGroup(header4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnVolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
