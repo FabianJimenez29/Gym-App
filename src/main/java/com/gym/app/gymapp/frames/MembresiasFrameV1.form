@@ -134,7 +134,7 @@
                       </Group>
                       <Component id="jScrollPane1" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="0" pref="80" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="48" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -376,7 +376,7 @@
             <Component class="javax.swing.JLabel" name="btnVolver">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\Administrator\Documents\NetBeansProjects\Gym-App\src\main\resources\volverr.png"/>
+                  <Image iconType="3" name="/volverr.png"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">

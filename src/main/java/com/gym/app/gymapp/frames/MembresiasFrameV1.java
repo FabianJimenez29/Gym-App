@@ -196,7 +196,7 @@ public class MembresiasFrameV1 extends javax.swing.JFrame {
             }
         });
 
-        btnVolver.setIcon(new javax.swing.ImageIcon("C:\\Users\\Administrator\\Documents\\NetBeansProjects\\Gym-App\\src\\main\\resources\\volverr.png")); // NOI18N
+        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/volverr.png"))); // NOI18N
         btnVolver.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -305,7 +305,7 @@ public class MembresiasFrameV1 extends javax.swing.JFrame {
                             .addComponent(btnEditar)
                             .addComponent(btnEliminar)))
                     .addComponent(jScrollPane1))
-                .addGap(0, 80, Short.MAX_VALUE))
+                .addGap(0, 48, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -481,6 +481,7 @@ public class MembresiasFrameV1 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error al cargar membresías: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+
     private void cargarTipo() {
         try {
             cmbTipoMembresia.removeAllItems();
@@ -495,7 +496,6 @@ public class MembresiasFrameV1 extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-    
 
     public void limpiar() {
         txtId.setText("");
@@ -533,7 +533,30 @@ public class MembresiasFrameV1 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
+        try {
+            int idMembresia = Integer.parseInt(txtId.getText());
+
+            int confirmacion = JOptionPane.showConfirmDialog(this,
+                    "¿Estás seguro de que deseas eliminar esta membresía?",
+                    "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
+
+            if (confirmacion == JOptionPane.YES_OPTION) {
+                MembresiaDAO dao = new MembresiaDAO();
+                dao.eliminarMembresia(idMembresia); 
+                cargarMembresia(); 
+                limpiar(); 
+                btnGuardar.setEnabled(true);
+                txtId.setEnabled(true);
+
+                JOptionPane.showMessageDialog(this,
+                        "Membresía eliminada exitosamente",
+                        "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                    "Error al eliminar la membresía: " + e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void tblMembresiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMembresiaMouseClicked
@@ -562,6 +585,17 @@ public class MembresiasFrameV1 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdActionPerformed
 
+    private void headerMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_headerMouseDragged
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - xMouse, y - yMouse);
+    }//GEN-LAST:event_headerMouseDragged
+
+    private void headerMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_headerMousePressed
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+    }//GEN-LAST:event_headerMousePressed
+
     private void btnVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseClicked
         PrincipalV1 principal = new PrincipalV1();
         principal.setVisible(true);
@@ -575,17 +609,6 @@ public class MembresiasFrameV1 extends javax.swing.JFrame {
     private void btnVolverMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseExited
         btnVolver.setBackground(Color.white);
     }//GEN-LAST:event_btnVolverMouseExited
-
-    private void headerMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_headerMouseDragged
-        int x = evt.getXOnScreen();
-        int y = evt.getYOnScreen();
-        this.setLocation(x - xMouse, y - yMouse);
-    }//GEN-LAST:event_headerMouseDragged
-
-    private void headerMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_headerMousePressed
-        xMouse = evt.getX();
-        yMouse = evt.getY();
-    }//GEN-LAST:event_headerMousePressed
 
     /**
      * @param args the command line arguments

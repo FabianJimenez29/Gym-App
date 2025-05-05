@@ -70,7 +70,6 @@ public class AdminV1 extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtNameAdmin.setBackground(new java.awt.Color(255, 255, 255));
         txtNameAdmin.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtNameAdmin.setForeground(new java.awt.Color(204, 204, 204));
         txtNameAdmin.setText("Ingrese el nombre");
@@ -89,18 +88,15 @@ public class AdminV1 extends javax.swing.JFrame {
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 230, 20));
 
         jLabel1.setFont(new java.awt.Font("Roboto Light", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel1.setText("Nombre");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 60, 30));
 
         jLabel2.setFont(new java.awt.Font("Roboto Light", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel2.setText("Apellido");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 60, 30));
 
-        txtLastnameAdmin.setBackground(new java.awt.Color(255, 255, 255));
         txtLastnameAdmin.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtLastnameAdmin.setForeground(new java.awt.Color(204, 204, 204));
         txtLastnameAdmin.setText("Ingrese el apellido");
@@ -119,12 +115,10 @@ public class AdminV1 extends javax.swing.JFrame {
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 230, 20));
 
         jLabel3.setFont(new java.awt.Font("Roboto Light", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("Edad");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 40, 30));
 
-        txtAgeAdmin.setBackground(new java.awt.Color(255, 255, 255));
         txtAgeAdmin.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtAgeAdmin.setForeground(new java.awt.Color(204, 204, 204));
         txtAgeAdmin.setText("Ingrese la edad");
@@ -138,12 +132,10 @@ public class AdminV1 extends javax.swing.JFrame {
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 230, 20));
 
         jLabel4.setFont(new java.awt.Font("Roboto Light", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel4.setText("Telefono");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 60, 30));
 
-        txtPhoneAdmin.setBackground(new java.awt.Color(255, 255, 255));
         txtPhoneAdmin.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtPhoneAdmin.setForeground(new java.awt.Color(204, 204, 204));
         txtPhoneAdmin.setText("Ingrese el telefono");
@@ -157,12 +149,10 @@ public class AdminV1 extends javax.swing.JFrame {
         jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 230, 20));
 
         jLabel5.setFont(new java.awt.Font("Roboto Light", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel5.setText("Correo");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 50, 30));
 
-        txtMailAdmin.setBackground(new java.awt.Color(255, 255, 255));
         txtMailAdmin.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtMailAdmin.setForeground(new java.awt.Color(204, 204, 204));
         txtMailAdmin.setText("Ingrese el correo");
@@ -181,12 +171,10 @@ public class AdminV1 extends javax.swing.JFrame {
         jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, 230, 20));
 
         jLabel6.setFont(new java.awt.Font("Roboto Light", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel6.setText("ID");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 20, 30));
 
-        txtIdAdmin.setBackground(new java.awt.Color(255, 255, 255));
         txtIdAdmin.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtIdAdmin.setForeground(new java.awt.Color(204, 204, 204));
         txtIdAdmin.setText("Ingrese el ID");
@@ -200,13 +188,11 @@ public class AdminV1 extends javax.swing.JFrame {
         jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 230, 20));
 
         jLabel7.setFont(new java.awt.Font("Roboto Light", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel7.setText("Contraseña");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, 80, 30));
         jPanel1.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 230, 20));
 
-        txtContrasena.setBackground(new java.awt.Color(255, 255, 255));
         txtContrasena.setText("****************");
         txtContrasena.setBorder(null);
         txtContrasena.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -277,7 +263,7 @@ public class AdminV1 extends javax.swing.JFrame {
             }
         });
 
-        btnVolver.setIcon(new javax.swing.ImageIcon("C:\\Users\\Administrator\\Documents\\NetBeansProjects\\Gym-App\\src\\main\\resources\\volverr.png")); // NOI18N
+        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/volverr.png"))); // NOI18N
         btnVolver.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -377,20 +363,6 @@ public class AdminV1 extends javax.swing.JFrame {
         int y = evt.getYOnScreen();
         this.setLocation(x - xMouse, y - yMouse);
     }//GEN-LAST:event_headerMouseDragged
-
-    private void btnVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseClicked
-        PrincipalV1 principal = new PrincipalV1();
-        principal.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_btnVolverMouseClicked
-
-    private void btnVolverMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseEntered
-        btnVolver.setBackground(Color.red);
-    }//GEN-LAST:event_btnVolverMouseEntered
-
-    private void btnVolverMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseExited
-        btnVolver.setBackground(Color.white);
-    }//GEN-LAST:event_btnVolverMouseExited
 
     private void txtContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContrasenaActionPerformed
         // TODO add your handling code here:
@@ -729,6 +701,20 @@ public class AdminV1 extends javax.swing.JFrame {
             txtContrasena.setText(tblAdmin.getValueAt(fila, 6).toString());
         }
     }//GEN-LAST:event_tblAdminMouseClicked
+
+    private void btnVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseClicked
+        PrincipalV1 principal = new PrincipalV1();
+        principal.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnVolverMouseClicked
+
+    private void btnVolverMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseEntered
+        btnVolver.setBackground(Color.red);
+    }//GEN-LAST:event_btnVolverMouseEntered
+
+    private void btnVolverMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseExited
+        btnVolver.setBackground(Color.white);
+    }//GEN-LAST:event_btnVolverMouseExited
 
     private String generarContrasena(String nombre, String apellido, int edad) {
         return nombre.substring(0, Math.min(3, nombre.length()))

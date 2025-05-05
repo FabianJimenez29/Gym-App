@@ -69,21 +69,17 @@ public class ClienteV1 extends javax.swing.JFrame {
         bg.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("Roboto Light", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel2.setText("Apellido");
 
         jLabel1.setFont(new java.awt.Font("Roboto Light", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel1.setText("Nombre");
 
         jLabel3.setFont(new java.awt.Font("Roboto Light", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("Edad");
 
-        txtIdClient.setBackground(new java.awt.Color(255, 255, 255));
         txtIdClient.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtIdClient.setForeground(new java.awt.Color(204, 204, 204));
         txtIdClient.setText("Ingrese el ID");
@@ -94,7 +90,6 @@ public class ClienteV1 extends javax.swing.JFrame {
             }
         });
 
-        txtAgeClient.setBackground(new java.awt.Color(255, 255, 255));
         txtAgeClient.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtAgeClient.setForeground(new java.awt.Color(204, 204, 204));
         txtAgeClient.setText("Ingrese la edad");
@@ -106,11 +101,9 @@ public class ClienteV1 extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Roboto Light", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel5.setText("Correo");
 
-        txtLastnameClient.setBackground(new java.awt.Color(255, 255, 255));
         txtLastnameClient.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtLastnameClient.setForeground(new java.awt.Color(204, 204, 204));
         txtLastnameClient.setText("Ingrese el apellido");
@@ -126,7 +119,6 @@ public class ClienteV1 extends javax.swing.JFrame {
             }
         });
 
-        txtPhoneClient.setBackground(new java.awt.Color(255, 255, 255));
         txtPhoneClient.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtPhoneClient.setForeground(new java.awt.Color(204, 204, 204));
         txtPhoneClient.setText("Ingrese el telefono");
@@ -138,11 +130,9 @@ public class ClienteV1 extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Roboto Light", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel4.setText("Telefono");
 
-        txtNameClient.setBackground(new java.awt.Color(255, 255, 255));
         txtNameClient.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtNameClient.setForeground(new java.awt.Color(204, 204, 204));
         txtNameClient.setText("Ingrese el nombre");
@@ -158,7 +148,6 @@ public class ClienteV1 extends javax.swing.JFrame {
             }
         });
 
-        txtMailClient.setBackground(new java.awt.Color(255, 255, 255));
         txtMailClient.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtMailClient.setForeground(new java.awt.Color(204, 204, 204));
         txtMailClient.setText("Ingrese el correo");
@@ -175,7 +164,6 @@ public class ClienteV1 extends javax.swing.JFrame {
         });
 
         jLabel6.setFont(new java.awt.Font("Roboto Light", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel6.setText("ID");
 
@@ -200,7 +188,6 @@ public class ClienteV1 extends javax.swing.JFrame {
             }
         });
 
-        txtBuscarCliente.setBackground(new java.awt.Color(255, 255, 255));
         txtBuscarCliente.setText("Buscar Cliente");
         txtBuscarCliente.setBorder(null);
         txtBuscarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -253,7 +240,7 @@ public class ClienteV1 extends javax.swing.JFrame {
             }
         });
 
-        btnVolver.setIcon(new javax.swing.ImageIcon("C:\\Users\\Administrator\\Documents\\NetBeansProjects\\Gym-App\\src\\main\\resources\\volverr.png")); // NOI18N
+        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/volverr.png"))); // NOI18N
         btnVolver.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -401,7 +388,7 @@ public class ClienteV1 extends javax.swing.JFrame {
                         .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -880,6 +867,17 @@ public class ClienteV1 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtBuscarClienteMousePressed
 
+    private void headerMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_headerMouseDragged
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - xMouse, y - yMouse);
+    }//GEN-LAST:event_headerMouseDragged
+
+    private void headerMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_headerMousePressed
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+    }//GEN-LAST:event_headerMousePressed
+
     private void btnVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseClicked
         PrincipalV1 principal = new PrincipalV1();
         principal.setVisible(true);
@@ -893,17 +891,6 @@ public class ClienteV1 extends javax.swing.JFrame {
     private void btnVolverMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseExited
         btnVolver.setBackground(Color.white);
     }//GEN-LAST:event_btnVolverMouseExited
-
-    private void headerMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_headerMouseDragged
-        int x = evt.getXOnScreen();
-        int y = evt.getYOnScreen();
-        this.setLocation(x - xMouse, y - yMouse);
-    }//GEN-LAST:event_headerMouseDragged
-
-    private void headerMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_headerMousePressed
-        xMouse = evt.getX();
-        yMouse = evt.getY();
-    }//GEN-LAST:event_headerMousePressed
 
     
     /**
