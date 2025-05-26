@@ -9,8 +9,8 @@ public class Updater {
 
     private static final String VERSION_URL = "https://raw.githubusercontent.com/FabianJimenez29/Gym-App/master/version.txt";
     private static final String DOWNLOAD_URL = "https://github.com/FabianJimenez29/Gym-App/releases/download/V1.0/GymApp-1.0-SNAPSHOT-jar-with-dependencies.jar";
-    private static final String LOCAL_JAR_PATH = "GymApp-1.0-SNAPSHOT-jar-with-dependencies.jar";
-    private static final String VERSION_LOCAL = "V1.1";
+    private static final String LOCAL_JAR_PATH = "GymApp-Act-V1.2.jar";
+    private static final String VERSION_LOCAL = "V1.2";
 
     public static boolean checkAndUpdate() {
         try {
