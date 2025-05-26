@@ -21,6 +21,7 @@ public class AdminV1 extends javax.swing.JFrame {
 
     public AdminV1() {
         initComponents();
+        setLocationRelativeTo(null);
         txtContrasena.setEnabled(false);
         cargarUsuario();
     }
@@ -65,7 +66,6 @@ public class AdminV1 extends javax.swing.JFrame {
         btnVolver = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setLocationByPlatform(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -722,7 +722,7 @@ public class AdminV1 extends javax.swing.JFrame {
                 + edad
                 + "_gym2025";
     }
-    
+
     private void cargarUsuario() {
         try {
             // Obtener lista de membresías desde la base de datos
@@ -759,7 +759,7 @@ public class AdminV1 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error al cargar membresías: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     public void limpiar() {
         txtAgeAdmin.setText("");
         txtIdAdmin.setText("");
@@ -769,7 +769,7 @@ public class AdminV1 extends javax.swing.JFrame {
         txtPhoneAdmin.setText("");
         txtContrasena.setText("");
     }
-    
+
     /**
      * @param args the command line arguments
      */

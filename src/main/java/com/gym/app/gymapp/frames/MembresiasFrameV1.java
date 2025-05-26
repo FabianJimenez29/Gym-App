@@ -23,6 +23,8 @@ public class MembresiasFrameV1 extends javax.swing.JFrame {
 
     public MembresiasFrameV1() {
         initComponents();
+        setLocationRelativeTo(null);
+
         cargarMembresia();
         cargarTipo();
         limpiar();
@@ -62,7 +64,6 @@ public class MembresiasFrameV1 extends javax.swing.JFrame {
         btnVolver = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setLocationByPlatform(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -542,9 +543,9 @@ public class MembresiasFrameV1 extends javax.swing.JFrame {
 
             if (confirmacion == JOptionPane.YES_OPTION) {
                 MembresiaDAO dao = new MembresiaDAO();
-                dao.eliminarMembresia(idMembresia); 
-                cargarMembresia(); 
-                limpiar(); 
+                dao.eliminarMembresia(idMembresia);
+                cargarMembresia();
+                limpiar();
                 btnGuardar.setEnabled(true);
                 txtId.setEnabled(true);
 

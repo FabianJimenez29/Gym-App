@@ -21,11 +21,13 @@ public class LoginFrameV1 extends javax.swing.JFrame {
      */
     public LoginFrameV1() {
         initComponents();
+        setLocationRelativeTo(null);
+
         txtContrasena.setEchoChar('*');
         setTitle("Login");
         pack();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLocationRelativeTo(null); 
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 
@@ -50,7 +52,6 @@ public class LoginFrameV1 extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setLocationByPlatform(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 

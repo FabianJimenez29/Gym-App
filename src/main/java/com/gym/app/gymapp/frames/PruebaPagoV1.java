@@ -28,6 +28,7 @@ public class PruebaPagoV1 extends javax.swing.JFrame {
 
     public PruebaPagoV1() {
         initComponents();
+        setLocationRelativeTo(null);
 
         SessionManager session = SessionManager.getInstance();
         if (!session.isAdmin()) {
@@ -94,7 +95,6 @@ public class PruebaPagoV1 extends javax.swing.JFrame {
         se2 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setLocationByPlatform(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 

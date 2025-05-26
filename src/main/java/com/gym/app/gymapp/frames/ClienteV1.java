@@ -18,8 +18,10 @@ import javax.swing.table.DefaultTableModel;
 public class ClienteV1 extends javax.swing.JFrame {
 
     int xMouse, yMouse;
+
     public ClienteV1() {
         initComponents();
+        setLocationRelativeTo(null);
         cargarUsuario();
     }
 
@@ -64,7 +66,6 @@ public class ClienteV1 extends javax.swing.JFrame {
         btnVolver = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setLocationByPlatform(true);
 
         bg.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -751,7 +752,6 @@ public class ClienteV1 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    
     private void cargarUsuario() {
         try {
             // Obtener lista de membresías desde la base de datos
@@ -786,7 +786,7 @@ public class ClienteV1 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error al cargar membresías: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         cargarUsuario();
         txtBuscarCliente.setText("");
@@ -800,7 +800,7 @@ public class ClienteV1 extends javax.swing.JFrame {
         txtNameClient.setText("");
         txtPhoneClient.setText("");
     }
-    
+
     private void cargarTablaClientes(List<Usuario> listaClientes) {
         DefaultTableModel modelo = (DefaultTableModel) tblClientes.getModel();
         modelo.setRowCount(0);  // Limpiar tabla antes de agregar nuevas filas
@@ -816,7 +816,7 @@ public class ClienteV1 extends javax.swing.JFrame {
             });
         }
     }
-    
+
     private void tblClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblClientesMouseClicked
         int fila = tblClientes.getSelectedRow();
         if (fila >= 0) {
@@ -892,7 +892,6 @@ public class ClienteV1 extends javax.swing.JFrame {
         btnVolver.setBackground(Color.white);
     }//GEN-LAST:event_btnVolverMouseExited
 
-    
     /**
      * @param args the command line arguments
      */

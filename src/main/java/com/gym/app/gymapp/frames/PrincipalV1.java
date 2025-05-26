@@ -15,6 +15,8 @@ public class PrincipalV1 extends javax.swing.JFrame {
      */
     public PrincipalV1() {
         initComponents();
+        setLocationRelativeTo(null);
+
     }
 
     /**
@@ -40,7 +42,6 @@ public class PrincipalV1 extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setLocationByPlatform(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -237,7 +238,7 @@ public class PrincipalV1 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnClientesMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+
         LoginFrameV1 lg = new LoginFrameV1();
         lg.setVisible(true);
         dispose();
