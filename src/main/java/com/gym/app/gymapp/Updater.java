@@ -9,7 +9,8 @@ public class Updater {
 
     private static final String VERSION_URL = "https://raw.githubusercontent.com/FabianJimenez29/Gym-App/master/version.txt";
     private static final String DOWNLOAD_URL = "https://github.com/FabianJimenez29/Gym-App/releases/download/V1.0/GymApp-1.0-SNAPSHOT-jar-with-dependencies.jar";
-    private static final String NEW_JAR_NAME = "GymApp-1.0-SNAPSHOT-jar-with-dependencies.jar";
+    private static final String NEW_JAR_TEMP_NAME = "GymApp-temp.jar";
+    private static final String FINAL_JAR_NAME = "GymApp-1.0-SNAPSHOT-jar-with-dependencies.jar";
     private static final String VERSION_LOCAL = "V1.0";
 
     public static boolean checkAndUpdate() {
@@ -21,7 +22,7 @@ public class Updater {
                         "Actualización disponible", JOptionPane.YES_NO_OPTION);
 
                 if (respuesta == JOptionPane.YES_OPTION) {
-                    downloadFileWithProgress(DOWNLOAD_URL, NEW_JAR_NAME);
+                    downloadFileWithProgress(DOWNLOAD_URL, NEW_JAR_TEMP_NAME);
                     launchUpdaterScript();
                     return true;
                 }
@@ -75,25 +76,39 @@ public class Updater {
     }
 
     private static void launchUpdaterScript() throws IOException {
-        String oldJar = new File(Updater.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getName();
+        String os = System.getProperty("os.name").toLowerCase();
 
-        String script = """
-            #!/bin/bash
-            sleep 2
-            rm "%s"
-            mv "%s" "%s"
-            nohup java -jar "%s" &
-            """.formatted(oldJar, NEW_JAR_NAME, oldJar, oldJar);
+        if (os.contains("win")) {
+            String script = """
+                    @echo off
+                    timeout /t 2 >nul
+                    del "%s"
+                    ren "%s" "%s"
+                    start javaw -jar "%s"
+                    """.formatted(FINAL_JAR_NAME, NEW_JAR_TEMP_NAME, FINAL_JAR_NAME, FINAL_JAR_NAME);
 
-        File scriptFile = new File("update.sh");
-        try (FileWriter writer = new FileWriter(scriptFile)) {
-            writer.write(script);
+            File scriptFile = new File("update.bat");
+            try (FileWriter writer = new FileWriter(scriptFile)) {
+                writer.write(script);
+            }
+
+            Runtime.getRuntime().exec("cmd /c start update.bat");
+        } else {
+            String script = """
+                    #!/bin/bash
+                    sleep 2
+                    rm "%s"
+                    mv "%s" "%s"
+                    nohup java -jar "%s" &
+                    """.formatted(FINAL_JAR_NAME, NEW_JAR_TEMP_NAME, FINAL_JAR_NAME, FINAL_JAR_NAME);
+
+            File scriptFile = new File("update.sh");
+            try (FileWriter writer = new FileWriter(scriptFile)) {
+                writer.write(script);
+            }
+
+            scriptFile.setExecutable(true);
+            new ProcessBuilder("/bin/bash", "update.sh").start();
         }
-
-        // Hacer ejecutable el script
-        scriptFile.setExecutable(true);
-
-        // Ejecutar el script
-        new ProcessBuilder("/bin/bash", "update.sh").start();
     }
 }
