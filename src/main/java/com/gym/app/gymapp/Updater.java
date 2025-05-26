@@ -1,3 +1,5 @@
+package com.gym.app.gymapp;
+
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -9,16 +11,19 @@ import java.nio.file.*;
 
 public class Updater {
 
-    private static final String VERSION_LOCAL = "V1.0";
     private static final String VERSION_URL = "https://raw.githubusercontent.com/FabianJimenez29/Gym-App/main/version.txt";
     private static final String DOWNLOAD_URL =
-        "https://github.com/FabianJimenez29/Gym-App/releases/download/V1.0/GymApp-1.0-SNAPSHOT.jar";
+            "https://github.com/FabianJimenez29/Gym-App/releases/download/V1.0/GymApp-1.0-SNAPSHOT.jar";
     private static final String LOCAL_JAR_PATH = "GymApp-1.0-SNAPSHOT.jar";
 
-    public static void main(String[] args) {
+    // Ahora esta versión local la podemos obtener dinámicamente si quieres, 
+    // pero por simplicidad la dejaremos fija o en un archivo externo.
+    private static final String VERSION_LOCAL = "V1.0";
+
+
+    public static boolean checkAndUpdate() {
         try {
             String versionRemota = readRemoteVersion(VERSION_URL);
-
             System.out.println("Versión local: " + VERSION_LOCAL);
             System.out.println("Versión remota: " + versionRemota);
 
@@ -26,12 +31,15 @@ public class Updater {
                 System.out.println("Nueva versión detectada. Actualizando...");
                 downloadFile(DOWNLOAD_URL, LOCAL_JAR_PATH);
                 System.out.println("Actualización completada.");
+                return true;
             } else {
                 System.out.println("No hay actualización disponible.");
+                return false;
             }
 
         } catch (Exception e) {
             System.err.println("Error durante la actualización: " + e.getMessage());
+            return false;
         }
     }
 
@@ -43,7 +51,6 @@ public class Updater {
     }
 
     private static void downloadFile(String urlStr, String localPath) throws IOException {
-        // Código igual que antes para descargar el archivo...
         URL url = new URL(urlStr);
         HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
         int responseCode = httpConn.getResponseCode();
