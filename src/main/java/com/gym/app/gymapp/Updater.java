@@ -8,9 +8,9 @@ import java.net.URL;
 public class Updater {
 
     private static final String VERSION_URL = "https://raw.githubusercontent.com/FabianJimenez29/Gym-App/master/version.txt";
-    private static final String DOWNLOAD_URL = "https://github.com/FabianJimenez29/Gym-App/releases/download/V1.0/GymApp-1.0-SNAPSHOT-jar-with-dependencies.jar";
-    private static final String LOCAL_JAR_PATH = "GymApp-Act-V1.2.jar";
-    private static final String VERSION_LOCAL = "V1.2";
+    private static final String DOWNLOAD_URL = "https://github.com/FabianJimenez29/Gym-App/releases/download/V1.2/GymApp-V1.2.jar";
+    private static final String NEW_JAR_NAME = "GymApp-V1.2.jar";
+    private static final String VERSION_LOCAL = "V1.0"; // <--- La versión actual del jar ejecutado
 
     public static boolean checkAndUpdate() {
         try {
@@ -21,7 +21,8 @@ public class Updater {
                         "Actualización disponible", JOptionPane.YES_NO_OPTION);
 
                 if (respuesta == JOptionPane.YES_OPTION) {
-                    downloadFileWithProgress(DOWNLOAD_URL, LOCAL_JAR_PATH);
+                    downloadFileWithProgress(DOWNLOAD_URL, NEW_JAR_NAME);
+                    launchUpdaterScript();
                     return true;
                 }
             }
@@ -53,8 +54,7 @@ public class Updater {
             dialog.setModal(false);
             dialog.setVisible(true);
 
-            try (InputStream inputStream = httpConn.getInputStream();
-                 FileOutputStream outputStream = new FileOutputStream(savePath)) {
+            try (InputStream inputStream = httpConn.getInputStream(); FileOutputStream outputStream = new FileOutputStream(savePath)) {
 
                 byte[] buffer = new byte[4096];
                 int bytesRead;
@@ -72,5 +72,28 @@ public class Updater {
             throw new IOException("No se pudo descargar el archivo. Código HTTP: " + responseCode);
         }
         httpConn.disconnect();
+    }
+
+    private static void launchUpdaterScript() throws IOException {
+        String oldJar = new File(Updater.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getName();
+
+        String script = """
+            #!/bin/bash
+            sleep 2
+            rm "%s"
+            mv "%s" "%s"
+            nohup java -jar "%s" &
+            """.formatted(oldJar, NEW_JAR_NAME, oldJar, oldJar);
+
+        File scriptFile = new File("update.sh");
+        try (FileWriter writer = new FileWriter(scriptFile)) {
+            writer.write(script);
+        }
+
+        // Hacer ejecutable el script
+        scriptFile.setExecutable(true);
+
+        // Ejecutar el script
+        new ProcessBuilder("/bin/bash", "update.sh").start();
     }
 }
