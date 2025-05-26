@@ -8,9 +8,9 @@ import java.net.URL;
 public class Updater {
 
     private static final String VERSION_URL = "https://raw.githubusercontent.com/FabianJimenez29/Gym-App/master/version.txt";
-    private static final String DOWNLOAD_URL = "https://github.com/FabianJimenez29/Gym-App/releases/download/V1.2/GymApp-1.0-SNAPSHOT-jar-with-dependencies.jar";
+    private static final String DOWNLOAD_URL = "https://github.com/FabianJimenez29/Gym-App/releases/download/V1.3/GymApp-1.0-SNAPSHOT-jar-with-dependencies.jar";
     private static final String NEW_JAR_NAME = "GymApp-1.0-SNAPSHOT-jar-with-dependencies.jar";
-    private static final String VERSION_LOCAL = "V1.2"; // 
+    private static final String VERSION_LOCAL = "V1.3"; // 
 
     public static boolean checkAndUpdate() {
         try {
