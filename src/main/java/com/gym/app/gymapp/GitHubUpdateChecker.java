@@ -263,6 +263,8 @@ public class GitHubUpdateChecker {
 
         if (option == JOptionPane.YES_OPTION) {
             downloadAndInstallUpdate();
+        }else{
+            System.exit(0);
         }
     }
 
