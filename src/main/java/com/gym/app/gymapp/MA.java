@@ -1,36 +1,40 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.gym.app.gymapp;
 
-import com.gym.app.gymapp.frames.LoginFrameV1;
 import java.io.FileInputStream;
-
-import java.io.IOException;
 import java.util.Properties;
 import javax.swing.JOptionPane;
 
-public class GymApp {
-
+/**
+ *
+ * @author fabi
+ */
+public class MA {
+    
     private GitHubUpdateChecker updateChecker;
     private javax.swing.Timer updateTimer;
-
-    public static void main(String[] args) {
-        GymApp app = new GymApp(); // Crear una instancia de la clase
-        app.updateChecker = new GitHubUpdateChecker(); // Acceder al campo de instancia
-        app.setupAutoUpdateCheck(); // Llamar método no estático
-        app.checkForUpdatesOnStartup();
+    
+    public MA() {
+        updateChecker = new GitHubUpdateChecker();
+        setupAutoUpdateCheck();
         
-        new LoginFrameV1().setVisible(true);
+        // Verificar actualizaciones al iniciar (opcional)
+        checkForUpdatesOnStartup();
     }
-
+    
     private void setupAutoUpdateCheck() {
         // Verificar actualizaciones cada hora
         int checkInterval = 60 * 60 * 1000; // 1 hora en milisegundos
-
+        
         updateTimer = new javax.swing.Timer(checkInterval, e -> {
             checkForUpdatesInBackground();
         });
         updateTimer.start();
     }
-
+    
     private void checkForUpdatesOnStartup() {
         // Opcional: verificar al iniciar, pero sin molestar al usuario
         new Thread(() -> {
@@ -47,7 +51,7 @@ public class GymApp {
             }
         }).start();
     }
-
+    
     private void checkForUpdatesInBackground() {
         new Thread(() -> {
             if (updateChecker.checkForUpdates()) {
@@ -57,60 +61,60 @@ public class GymApp {
             }
         }).start();
     }
-
+    
     private void showUpdateNotification() {
         // Mostrar una notificación menos intrusiva
         int option = JOptionPane.showConfirmDialog(
-                null,
-                "Hay una nueva versión disponible (" + updateChecker.getLatestVersion() + ").\n"
-                + "¿Desea ver los detalles de la actualización?",
-                "Nueva versión disponible",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.INFORMATION_MESSAGE
+            null,
+            "Hay una nueva versión disponible (" + updateChecker.getLatestVersion() + ").\n" +
+            "¿Desea ver los detalles de la actualización?",
+            "Nueva versión disponible",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.INFORMATION_MESSAGE
         );
-
+        
         if (option == JOptionPane.YES_OPTION) {
             updateChecker.showUpdateDialog();
         }
     }
-
+    
     // Método para verificar manualmente desde el menú
     public void checkForUpdatesManually() {
         new Thread(() -> {
             boolean hasUpdates = updateChecker.checkForUpdates();
-
+            
             javax.swing.SwingUtilities.invokeLater(() -> {
                 if (hasUpdates) {
                     updateChecker.showUpdateDialog();
                 } else {
                     JOptionPane.showMessageDialog(
-                            null,
-                            "Ya tienes la versión más reciente ("
-                            + updateChecker.getCurrentVersion() + ")",
-                            "Sin actualizaciones",
-                            JOptionPane.INFORMATION_MESSAGE
+                        null,
+                        "Ya tienes la versión más reciente (" + 
+                        updateChecker.getCurrentVersion() + ")",
+                        "Sin actualizaciones",
+                        JOptionPane.INFORMATION_MESSAGE
                     );
                 }
             });
         }).start();
     }
-
+    
     // Método para mostrar información de la versión actual
     public void showAboutDialog() {
-        String info = "Mi Aplicación\n\n"
-                + "Versión actual: " + updateChecker.getCurrentVersion() + "\n"
-                + "Última verificación: " + getLastCheckTime() + "\n\n"
-                + "Para buscar actualizaciones manualmente,\n"
-                + "usa el menú Ayuda > Buscar actualizaciones";
-
+        String info = "Mi Aplicación\n\n" +
+                     "Versión actual: " + updateChecker.getCurrentVersion() + "\n" +
+                     "Última verificación: " + getLastCheckTime() + "\n\n" +
+                     "Para buscar actualizaciones manualmente,\n" +
+                     "usa el menú Ayuda > Buscar actualizaciones";
+        
         JOptionPane.showMessageDialog(
-                null,
-                info,
-                "Acerca de",
-                JOptionPane.INFORMATION_MESSAGE
+            null,
+            info,
+            "Acerca de",
+            JOptionPane.INFORMATION_MESSAGE
         );
     }
-
+    
     private String getLastCheckTime() {
         try {
             Properties props = new Properties();
@@ -124,4 +128,5 @@ public class GymApp {
         }
         return "Nunca";
     }
+
 }

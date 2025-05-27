@@ -12,7 +12,7 @@ import java.sql.Statement;
 public class ConexionBD {  
     private static final String URL = "jdbc:mysql://localhost:3306/GymApp";
     private static final String USUARIO = "root";
-    private static final String CONTRASEÑA = "fabian29";
+    private static final String CONTRASEÑA = "cabita2025";
 
     public static Connection conectar() {
         Connection conexion = null;
