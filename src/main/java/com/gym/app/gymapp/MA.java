@@ -75,6 +75,8 @@ public class MA {
         
         if (option == JOptionPane.YES_OPTION) {
             updateChecker.showUpdateDialog();
+        }else{
+            System.exit(0);
         }
     }
     
