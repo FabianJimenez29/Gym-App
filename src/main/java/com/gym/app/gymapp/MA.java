@@ -36,12 +36,10 @@ public class MA {
     }
     
     private void checkForUpdatesOnStartup() {
-        // Opcional: verificar al iniciar, pero sin molestar al usuario
         new Thread(() -> {
             try {
-                Thread.sleep(5000); // Esperar 5 segundos después del inicio
+                Thread.sleep(5000); 
                 if (updateChecker.checkForUpdates()) {
-                    // Mostrar notificación discreta
                     javax.swing.SwingUtilities.invokeLater(() -> {
                         showUpdateNotification();
                     });
@@ -63,7 +61,6 @@ public class MA {
     }
     
     private void showUpdateNotification() {
-        // Mostrar una notificación menos intrusiva
         int option = JOptionPane.showConfirmDialog(
             null,
             "Hay una nueva versión disponible (" + updateChecker.getLatestVersion() + ").\n" +
@@ -72,7 +69,6 @@ public class MA {
             JOptionPane.YES_NO_OPTION,
             JOptionPane.INFORMATION_MESSAGE
         );
-        
         if (option == JOptionPane.YES_OPTION) {
             updateChecker.showUpdateDialog();
         }else{
@@ -80,11 +76,9 @@ public class MA {
         }
     }
     
-    // Método para verificar manualmente desde el menú
     public void checkForUpdatesManually() {
         new Thread(() -> {
             boolean hasUpdates = updateChecker.checkForUpdates();
-            
             javax.swing.SwingUtilities.invokeLater(() -> {
                 if (hasUpdates) {
                     updateChecker.showUpdateDialog();
@@ -101,14 +95,12 @@ public class MA {
         }).start();
     }
     
-    // Método para mostrar información de la versión actual
     public void showAboutDialog() {
         String info = "Mi Aplicación\n\n" +
                      "Versión actual: " + updateChecker.getCurrentVersion() + "\n" +
                      "Última verificación: " + getLastCheckTime() + "\n\n" +
                      "Para buscar actualizaciones manualmente,\n" +
                      "usa el menú Ayuda > Buscar actualizaciones";
-        
         JOptionPane.showMessageDialog(
             null,
             info,
